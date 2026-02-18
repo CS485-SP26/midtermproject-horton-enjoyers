@@ -1,5 +1,7 @@
 using UnityEngine;
 using Character;
+using TMPro;
+using Core;
 
 
 
@@ -9,6 +11,7 @@ namespace Farming{
     {
         [SerializeField] private GameObject waterCan;
         [SerializeField] private GameObject gardenHoe;
+        [SerializeField] private TMP_Text fundsText;
         [SerializeField] private ProgressBar waterBarUI;
         [SerializeField] private float waterLevel = 1f;
         [SerializeField] private float waterPerUse = 0.2f;
@@ -20,10 +23,12 @@ namespace Farming{
             Debug.Assert(waterCan, "Farmer requires a waterCan.");
             Debug.Assert(gardenHoe, "Farmer requires a gardenHoe.");
             Debug.Assert(waterBarUI, "Farmer requires a waterLevel ProgressBar.");
+            Debug.Assert(fundsText, "Farmer needs fundsText");
             animatedController = GetComponent<AnimatedController>();
             SetTool("None");
             waterBarUI.SetText("Water Level");
             waterBarUI.Fill = waterLevel;
+            fundsText.text = "Funds: $" + GameManager.Instance.GetFunds();
         }
 
 

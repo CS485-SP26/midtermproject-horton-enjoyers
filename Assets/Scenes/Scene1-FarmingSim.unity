@@ -6853,7 +6853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4540888d0a2a43d29fe2a2a9069c4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character.PlayerController
-  tileSelector: {fileID: 1128011531}
+  tileSelector: {fileID: 1309259228}
 --- !u!114 &784180685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6982,6 +6982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Farming.Farmer
   waterCan: {fileID: 243213384}
   gardenHoe: {fileID: 438718962}
+  fundsText: {fileID: 1453413617}
   waterBarUI: {fileID: 1133515292}
   waterLevel: 1
   waterPerUse: 0.2
@@ -8496,7 +8497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1128011530
 Transform:
   m_ObjectHideFlags: 0
@@ -9566,7 +9567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1309259226
 Transform:
   m_ObjectHideFlags: 0
