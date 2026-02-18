@@ -28,7 +28,7 @@ namespace Core
 
         public void AddFunds(int value)
         {
-            this.funds = value;
+            this.funds += value;
         }
 
         public int GetFunds()

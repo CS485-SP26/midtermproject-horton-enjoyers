@@ -21,6 +21,7 @@ namespace Environment
         public int CurrentDay { get { return currentDay; } } 
 
         public UnityEvent dayPassedEvent = new UnityEvent(); // Invoke() at end of day
+        public UnityEvent dayEvaluationEvent = new UnityEvent(); // Invoke() before tile degradation
 
         public void AdvanceDay()
         {
@@ -29,16 +30,17 @@ namespace Environment
 
             dayProgressSeconds = 0f; // Reset to start a new day
             currentDay++;
-            
+
             if (dayLabel)
             {
                 // Don't do this! It generates garbage (will eventually invoke Garbage Collect)
                 //dayLabel.text="Days: " + currentDay.ToString();
 
                 // Do this instead
-                dayLabel.SetText("Days: {0}", currentDay);                
+                dayLabel.SetText("Days: {0}", currentDay);
             }
 
+            dayEvaluationEvent.Invoke(); // Quest evaluation BEFORE tile degradation
             dayPassedEvent.Invoke(); //make announcement to all listeners
         }
 
