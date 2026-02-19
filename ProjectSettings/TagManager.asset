@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Farm Tile
+  - Shop
   layers:
   - Default
   - TransparentFX
