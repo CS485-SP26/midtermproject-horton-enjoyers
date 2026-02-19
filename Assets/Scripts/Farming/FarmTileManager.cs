@@ -35,6 +35,16 @@ namespace Farming
             IncrementDays(1);
         }
 
+        public int CountWateredTiles()
+        {
+            int count = 0;
+            foreach (FarmTile tile in tiles)
+            {
+                if (tile.GetCondition == FarmTile.Condition.Watered) count++;
+            }
+            return count;
+        }
+
         public void IncrementDays(int count)
         {
             while (count > 0)

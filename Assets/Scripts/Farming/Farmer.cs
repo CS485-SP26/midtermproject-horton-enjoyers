@@ -15,6 +15,7 @@ namespace Farming{
         [SerializeField] private ProgressBar waterBarUI;
         [SerializeField] private float waterLevel = 1f;
         [SerializeField] private float waterPerUse = 0.2f;
+        [SerializeField] private Core.DailyQuestManager questManager;
         AnimatedController animatedController;
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,6 +45,12 @@ namespace Farming{
                 }
             }
 
+        public void RefillWater()
+        {
+            waterLevel = 1f;
+            waterBarUI.Fill = waterLevel;
+        }
+
         public void TryFarming(FarmTile tile)
         {
             Debug.Log("Trying to farm");
@@ -53,13 +60,13 @@ namespace Farming{
                 {
                     
                     case FarmTile.Condition.Grass:
-                    { 
-                        
-                        tile.Interact(); 
+                    {
+                        tile.Interact();
                         animatedController.SetTrigger("Till");
+                        questManager?.NotifyTilled();
                         break;
                     }
-                    case FarmTile.Condition.Tilled: 
+                    case FarmTile.Condition.Tilled:
                     {
                         if (waterLevel >= waterPerUse)
                         {
@@ -67,7 +74,8 @@ namespace Farming{
                             animatedController.SetTrigger("Water");
                             waterLevel -= waterPerUse;
                             waterBarUI.Fill = waterLevel;
-                        } 
+                            questManager?.NotifyWatered();
+                        }
                         break;
                     }
                     default: break;

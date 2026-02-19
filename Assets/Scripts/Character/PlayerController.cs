@@ -14,6 +14,12 @@ namespace Character
         AnimatedController animatedController;
         [SerializeField] private TileSelector tileSelector;
         Farmer farmer;
+        IInteractable nearbyInteractable;
+
+        public void SetNearbyInteractable(IInteractable interactable)
+        {
+            nearbyInteractable = interactable;
+        }
 
         void Start()
         {
@@ -42,6 +48,11 @@ namespace Character
         public void OnInteract(InputValue value)
         {
             Debug.Log("Interact Command Recieved");
+            if (nearbyInteractable != null)
+            {
+                nearbyInteractable.Interact();
+                return;
+            }
             FarmTile tile = tileSelector.GetSelectedTile();
             farmer.TryFarming(tile);
         }
