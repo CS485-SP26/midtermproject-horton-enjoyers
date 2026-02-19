@@ -6,7 +6,7 @@ namespace Core
     public class GameManager:MonoBehaviour
     {
         static private GameManager instance = null;
-
+        private PlayerData playerData;
         static public GameManager Instance
         {
             get
@@ -23,17 +23,15 @@ namespace Core
             // no setter, read only!
         }
 
-        // TODO Refactor to struct or data class
-        int funds = 20;
 
         public void AddFunds(int value)
         {
-            this.funds += value;
+            this.playerData.AddFunds(value);
         }
 
         public int GetFunds()
         {
-            return this.funds;
+            return this.playerData.Funds;
         }
 
         void Awake()
@@ -43,6 +41,7 @@ namespace Core
                 instance = this;
                 DontDestroyOnLoad(this);
                 Debug.Log("GameManager set through Awake()");
+                playerData = new PlayerData(0);
             }
             else
             {
