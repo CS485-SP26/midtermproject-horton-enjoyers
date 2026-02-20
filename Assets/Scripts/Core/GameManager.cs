@@ -7,6 +7,8 @@ namespace Core
     {
         static private GameManager instance = null;
         private PlayerData playerData;
+        [SerializeField] private int startingFunds = 100;
+        [SerializeField] private int startingSeeds = 0;
         static public GameManager Instance
         {
             get
@@ -34,6 +36,21 @@ namespace Core
             return this.playerData.Funds;
         }
 
+        public bool SpendFunds(int amount)
+        {
+            return this.playerData.SpendFunds(amount);
+        }
+
+        public int GetSeeds()
+        {
+            return this.playerData.Seeds;
+        }
+
+        public void AddSeeds(int amount)
+        {
+            this.playerData.AddSeeds(amount);
+        }
+
         void Awake()
         {
             if (GameManager.instance == null)
@@ -41,7 +58,7 @@ namespace Core
                 instance = this;
                 DontDestroyOnLoad(this);
                 Debug.Log("GameManager set through Awake()");
-                playerData = new PlayerData(0);
+                playerData = new PlayerData(startingFunds, startingSeeds);
             }
             else
             {

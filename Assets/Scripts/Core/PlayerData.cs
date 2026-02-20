@@ -6,12 +6,13 @@ namespace Core
     [System.Serializable]
     public class PlayerData
     {
-        
-        public int Funds {get; private set;}
 
-        public PlayerData(int startingFunds)
+        public int Funds { get; private set; }
+        public int Seeds { get; private set; }
+        public PlayerData(int startingFunds, int startingSeeds)
         {
             Funds = startingFunds;
+            Seeds = startingSeeds;
         }
 
         public void AddFunds(int amount)
@@ -29,6 +30,11 @@ namespace Core
             // if enough funds for purchase subtract amount and return true
             Funds -= amount;
             return true;
+        }
+
+        public void AddSeeds(int amount)
+        {
+            Seeds += amount;
         }
     }
 }
