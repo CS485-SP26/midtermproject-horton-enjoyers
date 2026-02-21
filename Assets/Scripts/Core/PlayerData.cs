@@ -14,7 +14,7 @@ namespace Core
         {
             Funds = startingFunds;
             Seeds = startingSeeds;
-            WaterLevel = 0f;
+            WaterLevel = 1f;
         }
 
         public void AddFunds(int amount)
