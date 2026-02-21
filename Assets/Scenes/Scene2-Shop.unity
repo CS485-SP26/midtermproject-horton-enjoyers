@@ -721,6 +721,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1040666612}
+  - {fileID: 706712589}
   - {fileID: 603341478}
   - {fileID: 727961174}
   m_Father: {fileID: 0}
@@ -1279,6 +1280,152 @@ MonoBehaviour:
   cost: 50
   seedsPerPurchase: 1
   purchaseButton: {fileID: 603341479}
+--- !u!1001 &706712587
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 440897619}
+    m_Modifications:
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8696470750298736767, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_Name
+      value: ProgressBar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8696470750298736767, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 706712592}
+  m_SourcePrefab: {fileID: 100100000, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+--- !u!114 &706712588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4993801388237841194, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+  m_PrefabInstance: {fileID: 706712587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!224 &706712589 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+  m_PrefabInstance: {fileID: 706712587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &706712590 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8995670806891669389, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+  m_PrefabInstance: {fileID: 706712587}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &706712591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8696470750298736767, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+  m_PrefabInstance: {fileID: 706712587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &706712592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706712591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f198b1c9c930f4cb22e017d0f659b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgressBar
+  fillImage: {fileID: 706712590}
+  fillText: {fileID: 706712588}
 --- !u!1 &727961173
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,8 +2364,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Farming.Farmer
   waterCan: {fileID: 2052990956}
   gardenHoe: {fileID: 589896176}
-  fundsText: {fileID: 0}
-  waterBarUI: {fileID: 0}
+  fundsText: {fileID: 551422673}
+  waterBarUI: {fileID: 706712592}
   waterLevel: 1
   waterPerUse: 0.2
   questManager: {fileID: 0}
