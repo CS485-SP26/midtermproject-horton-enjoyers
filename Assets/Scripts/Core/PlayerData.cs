@@ -9,10 +9,12 @@ namespace Core
 
         public int Funds { get; private set; }
         public int Seeds { get; private set; }
+        public float WaterLevel { get; private set; }
         public PlayerData(int startingFunds, int startingSeeds)
         {
             Funds = startingFunds;
             Seeds = startingSeeds;
+            WaterLevel = 0f;
         }
 
         public void AddFunds(int amount)
@@ -35,6 +37,16 @@ namespace Core
         public void AddSeeds(int amount)
         {
             Seeds += amount;
+        }
+
+        public void AddWater(float amount)
+        {
+            WaterLevel = Mathf.Clamp01(WaterLevel + amount);
+        }
+
+        public void UseWater(float amount)
+        {
+            WaterLevel -= amount;
         }
     }
 }

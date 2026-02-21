@@ -22,16 +22,16 @@ public class PurchaseSeeds : MonoBehaviour
 
     public void OnPurchase()
     {
-        if (GameManager.Instance.SpendFunds(cost))
+        if (GameManager.Instance.playerData.SpendFunds(cost))
         {
-            GameManager.Instance.AddSeeds(seedsPerPurchase);
+            GameManager.Instance.playerData.AddSeeds(seedsPerPurchase);
         }
         UpdateUI();
     }
 
     private void UpdateUI()
     {
-        bool canAfford = GameManager.Instance.GetFunds() >= cost;
+        bool canAfford = GameManager.Instance.playerData.Funds >= cost;
         purchaseButton.gameObject.SetActive(canAfford);
     }
 }

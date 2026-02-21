@@ -13,9 +13,9 @@ namespace Farming{
         [SerializeField] private GameObject gardenHoe;
         [SerializeField] private TMP_Text fundsText;
         [SerializeField] private ProgressBar waterBarUI;
-        [SerializeField] private float waterLevel = 1f;
         [SerializeField] private float waterPerUse = 0.2f;
         [SerializeField] private Core.DailyQuestManager questManager;
+        [SerializeField] private GameManager gameManager;
         AnimatedController animatedController;
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,8 +28,8 @@ namespace Farming{
             animatedController = GetComponent<AnimatedController>();
             SetTool("None");
             waterBarUI.SetText("Water Level");
-            waterBarUI.Fill = waterLevel;
-            fundsText.text = "Funds: $" + GameManager.Instance.GetFunds();
+            waterBarUI.Fill = GameManager.Instance.playerData.WaterLevel;
+            fundsText.text = "Funds: $" + GameManager.Instance.playerData.Funds;
         }
 
 
@@ -47,8 +47,8 @@ namespace Farming{
 
         public void RefillWater()
         {
-            waterLevel = 1f;
-            waterBarUI.Fill = waterLevel;
+            GameManager.Instance.playerData.AddWater(1f);
+            waterBarUI.Fill = GameManager.Instance.playerData.WaterLevel;
         }
 
         public void TryFarming(FarmTile tile)
@@ -68,12 +68,12 @@ namespace Farming{
                     }
                     case FarmTile.Condition.Tilled:
                     {
-                        if (waterLevel >= waterPerUse)
+                        if (GameManager.Instance.playerData.WaterLevel >= waterPerUse)
                         {
                             tile.Interact();
                             animatedController.SetTrigger("Water");
-                            waterLevel -= waterPerUse;
-                            waterBarUI.Fill = waterLevel;
+                            GameManager.Instance.playerData.UseWater(waterPerUse);
+                            waterBarUI.Fill = GameManager.Instance.playerData.WaterLevel;
                             questManager?.NotifyWatered();
                         }
                         break;

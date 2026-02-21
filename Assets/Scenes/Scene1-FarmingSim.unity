@@ -4575,9 +4575,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 876916362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -286, y: 198}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 114, y: -36.399994}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &555931015
@@ -4712,9 +4712,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 876916362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -105, y: -436}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -105, y: 103}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564525593
@@ -7354,9 +7354,9 @@ MonoBehaviour:
   gardenHoe: {fileID: 438718962}
   fundsText: {fileID: 1453413617}
   waterBarUI: {fileID: 1133515292}
-  waterLevel: 1
   waterPerUse: 0.2
   questManager: {fileID: 1600655122}
+  gameManager: {fileID: 0}
 --- !u!114 &784180693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15884,9 +15884,9 @@ RectTransform:
   - {fileID: 1278016443}
   m_Father: {fileID: 876916362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 260, y: 200}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -140, y: -36}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1883107568
@@ -17880,7 +17880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
       propertyPath: m_AnchorMin.x
@@ -17888,7 +17888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
       propertyPath: m_SizeDelta.x
@@ -17932,7 +17932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 200
+      value: -46
       objectReference: {fileID: 0}
     - target: {fileID: 180751537506482428, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

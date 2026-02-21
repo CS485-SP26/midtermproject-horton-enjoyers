@@ -10,9 +10,9 @@ public class PlayerStatsDisplay : MonoBehaviour
     void Update()
     {
         if (fundsText != null)
-            fundsText.text = "Funds: " + GameManager.Instance.GetFunds();
+            fundsText.text = "Funds: " + GameManager.Instance.playerData.Funds;
 
         if (seedCountText != null)
-            seedCountText.text = "Seeds: " + GameManager.Instance.GetSeeds();
+            seedCountText.text = "Seeds: " + GameManager.Instance.playerData.Seeds;
     }
 }

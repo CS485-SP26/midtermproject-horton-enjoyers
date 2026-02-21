@@ -125,9 +125,9 @@ namespace Core
 
         private void AwardQuestReward(ActiveQuest quest)
         {
-            GameManager.Instance.AddFunds(quest.Definition.Reward);
+            GameManager.Instance.playerData.AddFunds(quest.Definition.Reward);
             if (fundsText != null)
-                fundsText.SetText("Funds: ${0}", GameManager.Instance.GetFunds());
+                fundsText.SetText("Funds: ${0}", GameManager.Instance.playerData.Funds);
             Debug.Log($"DailyQuestManager: Quest '{quest.Definition.DisplayName}' complete! Awarded ${quest.Definition.Reward}.");
         }
     }

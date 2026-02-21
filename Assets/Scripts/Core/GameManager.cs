@@ -6,7 +6,7 @@ namespace Core
     public class GameManager:MonoBehaviour
     {
         static private GameManager instance = null;
-        private PlayerData playerData;
+        public PlayerData playerData;
         [SerializeField] private int startingFunds = 100;
         [SerializeField] private int startingSeeds = 0;
         static public GameManager Instance
@@ -26,30 +26,7 @@ namespace Core
         }
 
 
-        public void AddFunds(int value)
-        {
-            this.playerData.AddFunds(value);
-        }
 
-        public int GetFunds()
-        {
-            return this.playerData.Funds;
-        }
-
-        public bool SpendFunds(int amount)
-        {
-            return this.playerData.SpendFunds(amount);
-        }
-
-        public int GetSeeds()
-        {
-            return this.playerData.Seeds;
-        }
-
-        public void AddSeeds(int amount)
-        {
-            this.playerData.AddSeeds(amount);
-        }
 
         void Awake()
         {
