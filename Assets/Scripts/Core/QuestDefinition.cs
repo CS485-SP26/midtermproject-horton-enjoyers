@@ -9,7 +9,7 @@ namespace Core
 
         [SerializeField] private QuestType questType;
         [SerializeField] private int targetCount = 3;
-        [SerializeField] private int rewardFunds = 10;
+        [SerializeField] private int rewardFunds = 30;
         [SerializeField] private string displayName;
 
         public QuestType Type => questType;
