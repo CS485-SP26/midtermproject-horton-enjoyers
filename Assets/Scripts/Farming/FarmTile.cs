@@ -24,11 +24,16 @@ namespace Farming
         List<Material> materials = new List<Material>();
 
         private int daysSinceLastInteraction = 0;
-        public FarmTile.Condition GetCondition { get { return tileCondition; } } // TODO: Consider what the set would do?
+        public FarmTile.Condition GetCondition { get { return tileCondition; } }
+        public int DaysSinceLastInteraction => daysSinceLastInteraction;
+
+        void Awake()
+        {
+            tileRenderer = GetComponent<MeshRenderer>();
+        }
 
         void Start()
         {
-            tileRenderer = GetComponent<MeshRenderer>();
             Debug.Assert(tileRenderer, "FarmTile requires a MeshRenderer");
 
             foreach (Transform edge in transform)
@@ -87,6 +92,13 @@ namespace Farming
                 }
             }
             if (active) stepAudio.Play();
+        }
+
+        public void RestoreState(Condition condition, int daysSince)
+        {
+            tileCondition = condition;
+            daysSinceLastInteraction = daysSince;
+            UpdateVisual();
         }
 
         public void OnDayPassed()

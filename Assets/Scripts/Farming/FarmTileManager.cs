@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Environment;
+using Core;
 
 namespace Farming
 {
@@ -14,10 +15,22 @@ namespace Farming
         [SerializeField] private float tileGap = 0.1f;
         private List<FarmTile> tiles = new List<FarmTile>();
         
+        void Awake()
+        {
+            // Populate tiles from existing scene children at runtime,
+            // before Start() runs so RestoreTileStates() has something to work with.
+            foreach (Transform child in transform)
+            {
+                if (child.TryGetComponent<FarmTile>(out var tile))
+                    tiles.Add(tile);
+            }
+        }
+
         void Start()
         {
             Debug.Assert(farmTilePrefab, "FarmTileManager requires a farmTilePrefab");
             Debug.Assert(dayController, "FarmTileManager requires a dayController");
+            RestoreTileStates();
         }
 
         void OnEnable()
@@ -27,7 +40,25 @@ namespace Farming
 
         void OnDisable()
         {
-            dayController.dayPassedEvent.RemoveListener(this.OnDayPassed);            
+            dayController.dayPassedEvent.RemoveListener(this.OnDayPassed);
+            SaveTileStates();
+        }
+
+        private void SaveTileStates()
+        {
+            var saves = new List<TileSave>();
+            foreach (FarmTile tile in tiles)
+                saves.Add(new TileSave { condition = tile.GetCondition, daysSinceLastInteraction = tile.DaysSinceLastInteraction });
+            GameManager.Instance.savedTileStates = saves;
+            GameManager.Instance.hasSavedTiles = true;
+        }
+
+        private void RestoreTileStates()
+        {
+            if (!GameManager.Instance.hasSavedTiles) return;
+            List<TileSave> saves = GameManager.Instance.savedTileStates;
+            for (int i = 0; i < tiles.Count && i < saves.Count; i++)
+                tiles[i].RestoreState(saves[i].condition, saves[i].daysSinceLastInteraction);
         }
 
         public void OnDayPassed()

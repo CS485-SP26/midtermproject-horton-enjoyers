@@ -20,6 +20,13 @@ namespace Core
             isCompleted = false;
         }
 
+        /// <summary>Restores quest state from a save (used when returning from another scene).</summary>
+        public void RestoreState(int progress, bool completed)
+        {
+            currentProgress = progress;
+            isCompleted = completed;
+        }
+
         /// <summary>Increments progress by amount. Returns true the moment the quest completes.</summary>
         public bool AddProgress(int amount)
         {

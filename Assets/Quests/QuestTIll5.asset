@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Core.QuestDefinition
   questType: 0
   targetCount: 5
-  rewardFunds: 10
+  rewardFunds: 300
   displayName: Till 5 Tiles

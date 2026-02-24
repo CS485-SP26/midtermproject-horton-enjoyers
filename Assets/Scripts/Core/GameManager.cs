@@ -1,14 +1,39 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Farming;
 
 namespace Core
 {
+    [System.Serializable]
+    public struct TileSave
+    {
+        public FarmTile.Condition condition;
+        public int daysSinceLastInteraction;
+    }
+
+    [System.Serializable]
+    public struct ActiveQuestSave
+    {
+        public QuestDefinition definition;
+        public int progress;
+        public bool isCompleted;
+    }
+
     public class GameManager:MonoBehaviour
     {
         static private GameManager instance = null;
         public PlayerData playerData;
         [SerializeField] private int startingFunds = 100;
         [SerializeField] private int startingSeeds = 0;
+
+        // --- Persistent game state ---
+        public int savedDay = 1;
+        public float savedDayProgress = 0f;
+        public List<TileSave> savedTileStates = new List<TileSave>();
+        public bool hasSavedTiles = false;
+        public List<ActiveQuestSave> savedQuests = null;
+        public int savedQuestDay = -1;
         static public GameManager Instance
         {
             get

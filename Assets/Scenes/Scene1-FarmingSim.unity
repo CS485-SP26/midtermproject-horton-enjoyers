@@ -8452,6 +8452,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1173184620}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &897392033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 897392035}
+  - component: {fileID: 897392034}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &897392034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897392033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550bb88b207175a489376f2e8459d91c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.GameManager
+  startingFunds: 100
+  startingSeeds: 0
+  savedDay: 1
+  savedDayProgress: 0
+  savedTileStates: []
+  hasSavedTiles: 0
+  savedQuests: []
+  savedQuestDay: -1
+--- !u!4 &897392035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897392033}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.00974, y: 0, z: 12.88318}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934797989
 GameObject:
   m_ObjectHideFlags: 0
@@ -13920,6 +13972,8 @@ MonoBehaviour:
   questPool:
   - {fileID: 11400000, guid: 2f0723a93dbddfe49b1269cb7762836b, type: 2}
   - {fileID: 11400000, guid: a5d566f0ce1376242878a48bc023f040, type: 2}
+  - {fileID: 11400000, guid: a095c4d7adee2b5498310c19baf7c4d7, type: 2}
+  - {fileID: 11400000, guid: 636d94426bdb1e940a1e3156679ce247, type: 2}
   questsPerDay: 1
   dayController: {fileID: 1248295910}
   farmTileManager: {fileID: 1135064477}
@@ -18127,6 +18181,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 82591969}
+  - {fileID: 897392035}
+  - {fileID: 1600655123}
   - {fileID: 3669322243495948795}
   - {fileID: 832575519}
   - {fileID: 1376645740}
@@ -18141,7 +18197,6 @@ SceneRoots:
   - {fileID: 1832991199}
   - {fileID: 810048581}
   - {fileID: 995609696}
-  - {fileID: 1600655123}
   - {fileID: 38908782}
   - {fileID: 1571753067}
   - {fileID: 1151578114}

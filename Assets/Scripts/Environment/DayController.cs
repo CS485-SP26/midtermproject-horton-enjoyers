@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro; // Important for TextMeshPro
 using UnityEngine.Events;
 using Farming;
+using Core;
 
 namespace Environment 
 {
@@ -23,6 +24,19 @@ namespace Environment
         public UnityEvent dayPassedEvent = new UnityEvent(); // Invoke() at end of day
         public UnityEvent dayEvaluationEvent = new UnityEvent(); // Invoke() before tile degradation
 
+        void Start()
+        {
+            currentDay = GameManager.Instance.savedDay;
+            dayProgressSeconds = GameManager.Instance.savedDayProgress;
+            if (dayLabel) dayLabel.SetText("Days: {0}", currentDay);
+        }
+
+        void OnDisable()
+        {
+            GameManager.Instance.savedDay = currentDay;
+            GameManager.Instance.savedDayProgress = dayProgressSeconds;
+        }
+
         public void AdvanceDay()
         {
             Debug.Assert(sunLight, "DayController requires a 'Sun'");
@@ -30,6 +44,8 @@ namespace Environment
 
             dayProgressSeconds = 0f; // Reset to start a new day
             currentDay++;
+            GameManager.Instance.savedDay = currentDay;
+            GameManager.Instance.savedDayProgress = 0f;
 
             if (dayLabel)
             {

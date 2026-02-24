@@ -41,7 +41,11 @@ namespace Core
             Debug.Assert(questPanelUI, "DailyQuestManager requires a QuestPanelUI");
             Debug.Assert(questPool != null && questPool.Length > 0, "DailyQuestManager requires at least one QuestDefinition in the pool");
 
-            RollNewQuests();
+            if (GameManager.Instance.savedQuests != null &&
+                GameManager.Instance.savedQuestDay == GameManager.Instance.savedDay)
+                RestoreQuests();
+            else
+                RollNewQuests();
         }
 
         /// <summary>Called by Farmer after successfully tilling a tile.</summary>
@@ -56,6 +60,7 @@ namespace Core
                 }
             }
             questPanelUI?.Refresh(activeQuests);
+            SaveQuests();
         }
 
         /// <summary>Called by Farmer after successfully watering a tile.</summary>
@@ -70,6 +75,7 @@ namespace Core
                 }
             }
             questPanelUI?.Refresh(activeQuests);
+            SaveQuests();
         }
 
         /// <summary>Fires before tile degradation — evaluate KeepWatered quests here.</summary>
@@ -87,6 +93,7 @@ namespace Core
                 }
             }
             questPanelUI?.Refresh(activeQuests);
+            SaveQuests();
         }
 
         /// <summary>Fires after tile degradation — roll fresh quests for the new day.</summary>
@@ -120,6 +127,29 @@ namespace Core
             }
 
             Debug.Log($"DailyQuestManager: Rolled {activeQuests.Count} new quest(s).");
+            questPanelUI?.Refresh(activeQuests);
+            SaveQuests();
+        }
+
+        private void SaveQuests()
+        {
+            var saves = new System.Collections.Generic.List<ActiveQuestSave>();
+            foreach (ActiveQuest quest in activeQuests)
+                saves.Add(new ActiveQuestSave { definition = quest.Definition, progress = quest.Progress, isCompleted = quest.IsCompleted });
+            GameManager.Instance.savedQuests = saves;
+            GameManager.Instance.savedQuestDay = GameManager.Instance.savedDay;
+        }
+
+        private void RestoreQuests()
+        {
+            activeQuests.Clear();
+            foreach (ActiveQuestSave save in GameManager.Instance.savedQuests)
+            {
+                var quest = new ActiveQuest(save.definition);
+                quest.RestoreState(save.progress, save.isCompleted);
+                activeQuests.Add(quest);
+            }
+            Debug.Log($"DailyQuestManager: Restored {activeQuests.Count} quest(s) from previous session.");
             questPanelUI?.Refresh(activeQuests);
         }
 
