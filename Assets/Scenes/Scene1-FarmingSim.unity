@@ -2459,7 +2459,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 383629377}
@@ -3005,7 +3005,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 400642163}
@@ -3566,7 +3566,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 413481111}
@@ -5369,7 +5369,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 593384254}
@@ -6635,7 +6635,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 749749636}
@@ -7488,7 +7488,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 818270252}
@@ -10970,7 +10970,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 1347809123}
@@ -11772,7 +11772,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 1381054964}
@@ -12206,7 +12206,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 1393355534}
@@ -12640,7 +12640,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 1403734918}
@@ -14778,7 +14778,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 1697533645}
@@ -17013,7 +17013,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
-  tomatoData: {fileID: 0}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
   cornData: {fileID: 0}
   carrotData: {fileID: 0}
   stepAudio: {fileID: 2056574615}
