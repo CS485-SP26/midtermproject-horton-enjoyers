@@ -68,6 +68,24 @@ namespace Farming{
                     }
                     case FarmTile.Condition.Tilled:
                     {
+                        if (GameManager.Instance.playerData.Seeds > 0)
+                        {
+                            if (tile.Plant())
+                            {
+                                GameManager.Instance.playerData.UseSeed();
+                                // Optional planting animation later
+                                // animatedController.SetTrigger("Plant");
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("No seeds available.");
+                        }
+
+                        break;
+                    }
+                    case FarmTile.Condition.Planted_Dry:
+                    {
                         if (GameManager.Instance.playerData.WaterLevel >= waterPerUse)
                         {
                             tile.Interact();

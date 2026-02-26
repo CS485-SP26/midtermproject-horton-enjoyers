@@ -39,6 +39,17 @@ namespace Core
             Seeds += amount;
         }
 
+        public bool UseSeed()
+        {   
+            if (Seeds >=1)
+            {
+                Seeds -= 1;
+                return true;
+            }
+            else
+                return false;
+        }
+
         public void AddWater(float amount)
         {
             WaterLevel = Mathf.Clamp01(WaterLevel + amount);
