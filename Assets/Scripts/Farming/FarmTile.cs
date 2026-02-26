@@ -19,6 +19,7 @@ namespace Farming
         [Header("Planting")]
         [SerializeField] private Plant plantPrefab;
         private Plant currentPlant;
+  
 
         [Header("Audio")]
         [SerializeField] private AudioSource stepAudio;
@@ -29,6 +30,7 @@ namespace Farming
 
         private int daysSinceLastInteraction = 0;
         public FarmTile.Condition GetCondition { get { return tileCondition; } }
+
         public int DaysSinceLastInteraction => daysSinceLastInteraction;
         public bool HasPlant => currentPlant != null;
 
@@ -61,7 +63,7 @@ namespace Farming
                         RemovePlant();
                         Till();
                     }
-                    else if(tileRenderer.material == tilledMaterial)
+                    else
                     {
                         Water();
                     }
@@ -84,7 +86,7 @@ namespace Farming
             if (tileCondition == Condition.Planted_Dry && currentPlant != null)
             {
                 currentPlant.ReceiveWater();
-                tileRenderer.material = wateredMaterial;
+                tileCondition = FarmTile.Condition.Planted_Wet;
                 UpdateVisual();
                 waterAudio?.Play();
                 return;
@@ -105,8 +107,9 @@ namespace Farming
                 case FarmTile.Condition.Tilled: tileRenderer.material = tilledMaterial; break;
                 case FarmTile.Condition.Watered: tileRenderer.material = wateredMaterial; break;
                 case FarmTile.Condition.Planted_Dry: tileRenderer.material = tilledMaterial; break;
-                case FarmTile.Condition.Planted_Wet: tileRenderer.material = tilledMaterial; break;
+                case FarmTile.Condition.Planted_Wet: tileRenderer.material = wateredMaterial; break;
             }
+            Debug.Log("Condition = " +tileCondition + "tilematerial = " + tileRenderer.material);
         }
 
         public void SetHighlight(bool active)
@@ -140,9 +143,9 @@ namespace Farming
                 currentPlant.OnDayPassed();
 
                 // Soil dries after 1 day
-                if (tileRenderer.material == wateredMaterial)
+                if (tileCondition == FarmTile.Condition.Planted_Wet)
                 {
-                    tileRenderer.material = tilledMaterial;
+                    tileCondition = FarmTile.Condition.Planted_Dry;
                     UpdateVisual();
                 }
                 return;

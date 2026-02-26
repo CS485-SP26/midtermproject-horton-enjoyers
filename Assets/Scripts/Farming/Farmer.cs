@@ -86,7 +86,12 @@ namespace Farming{
                     }
                     case FarmTile.Condition.Planted_Dry:
                     {
-                        if (GameManager.Instance.playerData.WaterLevel >= waterPerUse)
+                        if (GameManager.Instance.playerData.WaterLevel >= waterPerUse && tile.GetPlant().IsWithered)
+                        {
+                            tile.Interact();
+                            
+                        } 
+                        else
                         {
                             tile.Interact();
                             animatedController.SetTrigger("Water");
