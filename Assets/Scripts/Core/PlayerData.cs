@@ -11,6 +11,8 @@ namespace Core
         public int Seeds { get; private set; }
         public float WaterLevel { get; private set; }
 
+        public int Plants; // I think this works??
+
         public float EnergyLevel = 1f; 
         public PlayerData(int startingFunds, int startingSeeds)
         {

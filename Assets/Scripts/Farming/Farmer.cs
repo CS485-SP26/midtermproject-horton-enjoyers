@@ -69,6 +69,12 @@ namespace Farming{
                 Debug.Log("Trying to farm");
                 if (tile == null) return;
 
+                Plant plant = tile.GetPlant();
+                if (plant != null && (plant.IsMature || plant.IsWithered)) { 
+                    plant.Harvest(); 
+                    tile.ClearPlantReference();
+                    return; 
+                } 
                 Debug.Log("Condition" + tile.GetCondition);
 
                 switch (tile.GetCondition)

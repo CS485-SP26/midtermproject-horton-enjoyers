@@ -86,6 +86,13 @@ namespace Farming
             tillAudio?.Play();
         }
 
+        public void ClearPlantReference()
+        {
+            currentPlant = null;
+            tileCondition = FarmTile.Condition.Grass;
+            UpdateVisual();
+            // set condition back to Tilled ?
+        }
         public void Water()
         {
             if (tileCondition == Condition.Planted_Dry && currentPlant != null)
@@ -212,6 +219,8 @@ namespace Farming
 
             return save;
         }
+
+        
 
         public void RestoreState(TileSave save)
         {

@@ -135,17 +135,27 @@ namespace Farming
                     break;
             }
         }
-        /* Needs to be implemented
+
         public int Harvest()
         {
+        // If it's withered → allow harvesting BUT give nothing
+        if (currentState == PlantState.Withered)
+        {
+            Destroy(gameObject);
+            return 0;
+            }
+
+            // Only give reward if Mature
             if (currentState != PlantState.Mature)
                 return 0;
 
-            int value = plantData.sellValue;
+            // Add to NEW currency: Plants
+            int amount = 1; // you can scale this later (e.g., plantData.yield)
+            GameManager.Instance.playerData.Plants += amount;
+
             Destroy(gameObject);
-            return value;
+            return amount;
         }
-        */
 
         public PlantSave GetSaveData()
         {

@@ -7,6 +7,8 @@ public class PlayerStatsDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fundsText;
     [SerializeField] private TextMeshProUGUI seedCountText;
 
+    [SerializeField] private TextMeshProUGUI plantsText;
+
     void Update()
     {
         if (fundsText != null)
@@ -14,5 +16,8 @@ public class PlayerStatsDisplay : MonoBehaviour
 
         if (seedCountText != null)
             seedCountText.text = "Seeds: " + GameManager.Instance.playerData.Seeds;
+
+        if (plantsText != null)
+            plantsText.text = "Plants: " + GameManager.Instance.playerData.Plants;
     }
 }
