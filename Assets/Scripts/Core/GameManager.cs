@@ -10,6 +10,18 @@ namespace Core
     {
         public FarmTile.Condition condition;
         public int daysSinceLastInteraction;
+        public PlantSave plantData;
+    }
+
+    [System.Serializable]
+    public struct PlantSave
+    {
+
+        public bool hasPlant;
+        public string plantName;
+        public int growthStage;
+        public bool isWatered;
+        public bool isWithered;
     }
 
     [System.Serializable]

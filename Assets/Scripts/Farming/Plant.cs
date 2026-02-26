@@ -1,0 +1,189 @@
+using UnityEngine;
+using Core;
+
+namespace Farming
+{
+    public class Plant : MonoBehaviour
+    {
+        public enum PlantState
+        {
+            Planted,
+            Growing,
+            Mature,
+            Withered
+        }
+
+        [Header("Plant Data")]
+        [SerializeField] private PlantData plantData;
+
+        private PlantState currentState;
+
+        private int daysGrowing = 0;
+        private int daysWithoutWater = 0;
+        private int daysWatered = 0;
+
+        private GameObject plantedModel;
+        private GameObject growingModel;
+        private GameObject matureModel;
+        private GameObject witheredModel;
+
+        public PlantState CurrentState => currentState; //can be useful in other scripts, like for quest evaluation
+        public bool IsWithered => currentState == PlantState.Withered;
+        public bool IsMature => currentState == PlantState.Mature;
+
+  
+
+        public void InitializeModels()
+        {
+            if (plantData == null)
+            {
+                Debug.LogError("PlantData missing on Plant! (ex. TomatoData)");
+                return;
+            }
+
+            plantedModel = Instantiate(plantData.plantedModel, transform);
+            growingModel = Instantiate(plantData.growingModel, transform);
+            matureModel = Instantiate(plantData.matureModel, transform);
+            witheredModel = Instantiate(plantData.witheredModel, transform);
+
+            plantedModel.SetActive(false);
+            growingModel.SetActive(false);
+            matureModel.SetActive(false);
+            witheredModel.SetActive(false);
+        }
+
+        public void ReceiveWater()
+        {
+            if (IsWithered || IsMature)
+                return;
+
+            daysWithoutWater = 0;
+            daysWatered++;
+        }
+
+        public void OnDayPassed()
+        {
+            if (plantData == null) 
+                return;
+
+            if (IsWithered || IsMature)
+                return;
+
+            if (daysWatered > 0)
+            {
+                if (currentState == PlantState.Planted)
+                    SetState(PlantState.Growing);
+
+                if (daysGrowing < plantData.daysToMature)
+                {
+                    daysGrowing++;
+                }
+
+                if (daysGrowing >= plantData.daysToMature)
+                {
+                    SetState(PlantState.Mature);
+                }
+
+                daysWatered--;
+            }
+            else
+            {
+                daysWithoutWater++;
+
+                if (daysWithoutWater >= plantData.daysBeforeWither)
+                {
+                    SetState(PlantState.Withered);
+                }
+            }
+        }
+
+        public void SetState(PlantState newState)
+        {
+            Debug.Log("Plant state changing from " + currentState + " to " + newState);
+            currentState = newState;
+            UpdateVisual();
+        }
+
+        private void UpdateVisual()
+        {
+            if (plantedModel == null) return;
+
+            Debug.Log("UpdateVisual called, state = " + currentState);
+            Debug.Log("matureModel active: " + matureModel + " | growingModel active: " + growingModel);
+            
+            plantedModel.SetActive(false);
+            growingModel.SetActive(false);
+            matureModel.SetActive(false);
+            witheredModel.SetActive(false);
+
+            switch (currentState)
+            {
+                case PlantState.Planted:
+                    plantedModel.SetActive(true);
+                    break;
+
+                case PlantState.Growing:
+                    growingModel.SetActive(true);
+                    break;
+
+                case PlantState.Mature:
+                    matureModel.SetActive(true);
+                    break;
+
+                case PlantState.Withered:
+                    witheredModel.SetActive(true);
+                    break;
+            }
+        }
+        /* Needs to be implemented
+        public int Harvest()
+        {
+            if (currentState != PlantState.Mature)
+                return 0;
+
+            int value = plantData.sellValue;
+            Destroy(gameObject);
+            return value;
+        }
+        */
+
+        public PlantSave GetSaveData()
+        {
+            PlantSave save = new PlantSave();
+
+            save.hasPlant = true;
+            save.plantName = plantData.plantName;
+            save.growthStage = daysGrowing;   
+            save.isWatered = daysWatered > 0;   
+            save.isWithered = IsWithered;   
+    
+
+            return save;
+        }
+
+        public void LoadFromSaveData(PlantSave save, PlantData loadedPlantData)
+        {
+            if (!save.hasPlant)
+                return;
+
+            plantData = loadedPlantData;
+
+            daysGrowing = save.growthStage;
+            daysWatered = save.isWatered ? 1 : 0;
+            daysWithoutWater = save.isWatered ? 0 : daysWithoutWater;
+
+            InitializeModels();
+
+
+            if (save.isWithered)
+                SetState(PlantState.Withered);
+            else if (daysGrowing >= plantData.daysToMature)
+                SetState(PlantState.Mature);
+            else if (daysGrowing > 0)
+                SetState(PlantState.Growing);
+            else
+                SetState(PlantState.Planted);
+
+        }
+    }
+}

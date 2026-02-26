@@ -90,8 +90,33 @@ namespace Farming{
 
                     case FarmTile.Condition.Tilled:
                     {
+
                         // Must have enough water first
                         if (GameManager.Instance.playerData.WaterLevel >= waterPerUse)
+                        if (GameManager.Instance.playerData.Seeds > 0)
+                        {
+                            if (tile.Planting())
+                            {
+                                GameManager.Instance.playerData.UseSeed();
+                                // Optional planting animation later
+                                // animatedController.SetTrigger("Plant");
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("No seeds available.");
+                        }
+
+                        break;
+                    }
+                    case FarmTile.Condition.Planted_Dry:
+                    {
+                        if (tile.GetPlant().IsWithered)
+                        {
+                            tile.Interact();
+                            animatedController.SetTrigger("Till");
+                        } 
+                        else if (GameManager.Instance.playerData.WaterLevel >= waterPerUse)
                         {
                             // Energy check for watering
                             if (!energy.Consume(waterEnergyCost))

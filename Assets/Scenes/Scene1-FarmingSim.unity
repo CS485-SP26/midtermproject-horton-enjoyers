@@ -2519,6 +2519,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 383629377}
   tillAudio: {fileID: 383629376}
   waterAudio: {fileID: 383629375}
@@ -3061,6 +3065,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 400642163}
   tillAudio: {fileID: 400642162}
   waterAudio: {fileID: 400642161}
@@ -3618,6 +3626,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 413481111}
   tillAudio: {fileID: 413481110}
   waterAudio: {fileID: 413481109}
@@ -4983,6 +4995,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 575667308}
   tillAudio: {fileID: 575667307}
   waterAudio: {fileID: 575667306}
@@ -5413,6 +5429,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 593384254}
   tillAudio: {fileID: 593384253}
   waterAudio: {fileID: 593384252}
@@ -5950,6 +5970,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 621895053}
   tillAudio: {fileID: 621895052}
   waterAudio: {fileID: 621895051}
@@ -6778,6 +6802,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 749749636}
   tillAudio: {fileID: 749749635}
   waterAudio: {fileID: 749749634}
@@ -7649,6 +7677,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 818270252}
   tillAudio: {fileID: 818270251}
   waterAudio: {fileID: 818270250}
@@ -8673,7 +8705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.GameManager
   startingFunds: 100
-  startingSeeds: 0
+  startingSeeds: 5
   savedDay: 1
   savedDayProgress: 0
   savedTileStates: []
@@ -9951,6 +9983,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 1259173397}
   tillAudio: {fileID: 1259173396}
   waterAudio: {fileID: 1259173395}
@@ -11124,6 +11160,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 1347809123}
   tillAudio: {fileID: 1347809122}
   waterAudio: {fileID: 1347809121}
@@ -11922,6 +11962,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 1381054964}
   tillAudio: {fileID: 1381054963}
   waterAudio: {fileID: 1381054962}
@@ -12352,6 +12396,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 1393355534}
   tillAudio: {fileID: 1393355533}
   waterAudio: {fileID: 1393355532}
@@ -12782,6 +12830,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 1403734918}
   tillAudio: {fileID: 1403734917}
   waterAudio: {fileID: 1403734916}
@@ -14916,6 +14968,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 1697533645}
   tillAudio: {fileID: 1697533644}
   waterAudio: {fileID: 1697533643}
@@ -17150,6 +17206,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 2056574615}
   tillAudio: {fileID: 2056574614}
   waterAudio: {fileID: 2056574613}
@@ -17692,6 +17752,10 @@ MonoBehaviour:
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
+  plantPrefab: {fileID: 9029161576580563676, guid: 6c3644fecd206a24b906f76810a5a157, type: 3}
+  tomatoData: {fileID: 11400000, guid: 8ab553d6aea5e1e41904bd9132fc7f66, type: 2}
+  cornData: {fileID: 0}
+  carrotData: {fileID: 0}
   stepAudio: {fileID: 2096229169}
   tillAudio: {fileID: 2096229168}
   waterAudio: {fileID: 2096229167}

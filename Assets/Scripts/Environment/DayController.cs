@@ -62,6 +62,9 @@ namespace Environment
 
         public void UpdateVisuals()
         {
+            if (sunLight == null)
+                return;
+                
             // Calculate sun's rotation based on time of day
             // 0 degrees for sunrise, 180 for sunset, 360 for next sunrise
             float sunRotationX = Mathf.Lerp(0f, 360f, DayProgressPercent);

@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Environment;
+using Farming;
+using Core;
 
 namespace Farming 
 {
     public class FarmTile : MonoBehaviour
     {
-        public enum Condition { Grass, Tilled, Watered }
+        public enum Condition { Grass, Tilled, Watered, Planted_Dry, Planted_Wet }
 
         [SerializeField] private Condition tileCondition = Condition.Grass; 
 
@@ -15,6 +17,14 @@ namespace Farming
         [SerializeField] private Material tilledMaterial;
         [SerializeField] private Material wateredMaterial;
         MeshRenderer tileRenderer;
+
+        [Header("Planting")]
+        [SerializeField] private Plant plantPrefab;
+        private Plant currentPlant;
+        [SerializeField] private PlantData tomatoData;
+        [SerializeField] private PlantData cornData; //placeholder
+        [SerializeField] private PlantData carrotData; //placeholder
+
 
         [Header("Audio")]
         [SerializeField] private AudioSource stepAudio;
@@ -25,7 +35,9 @@ namespace Farming
 
         private int daysSinceLastInteraction = 0;
         public FarmTile.Condition GetCondition { get { return tileCondition; } }
+
         public int DaysSinceLastInteraction => daysSinceLastInteraction;
+        public bool HasPlant => currentPlant != null;
 
         void Awake()
         {
@@ -47,8 +59,22 @@ namespace Farming
             switch(tileCondition)
             {
                 case FarmTile.Condition.Grass: Till(); break;
-                case FarmTile.Condition.Tilled: Water(); break;
-                case FarmTile.Condition.Watered: Debug.Log("Ready for planting"); break;
+                case FarmTile.Condition.Tilled: Planting(); break;
+                //case FarmTile.Condition.Watered: Debug.Log("Ready for planting"); break;
+                case FarmTile.Condition.Planted_Dry:
+                {
+                    if (currentPlant != null && currentPlant.IsWithered)
+                    {
+                        RemovePlant();
+                        Till();
+                    }
+                    else
+                    {
+                        Water();
+                    }
+                    
+                    break;
+                }
             }
             daysSinceLastInteraction = 0;
         }
@@ -62,9 +88,19 @@ namespace Farming
 
         public void Water()
         {
+            if (tileCondition == Condition.Planted_Dry && currentPlant != null)
+            {
+                currentPlant.ReceiveWater();
+                tileCondition = FarmTile.Condition.Planted_Wet;
+                UpdateVisual();
+                waterAudio?.Play();
+                return;
+            }
+            /*
             tileCondition = FarmTile.Condition.Watered;
             UpdateVisual();
             waterAudio?.Play();
+            */
         }
 
         private void UpdateVisual()
@@ -75,7 +111,10 @@ namespace Farming
                 case FarmTile.Condition.Grass: tileRenderer.material = grassMaterial; break;
                 case FarmTile.Condition.Tilled: tileRenderer.material = tilledMaterial; break;
                 case FarmTile.Condition.Watered: tileRenderer.material = wateredMaterial; break;
+                case FarmTile.Condition.Planted_Dry: tileRenderer.material = tilledMaterial; break;
+                case FarmTile.Condition.Planted_Wet: tileRenderer.material = wateredMaterial; break;
             }
+            Debug.Log("Condition = " +tileCondition + "tilematerial = " + tileRenderer.material);
         }
 
         public void SetHighlight(bool active)
@@ -94,21 +133,120 @@ namespace Farming
             if (active) stepAudio.Play();
         }
 
-        public void RestoreState(Condition condition, int daysSince)
-        {
-            tileCondition = condition;
-            daysSinceLastInteraction = daysSince;
-            UpdateVisual();
-        }
+
 
         public void OnDayPassed()
         {
             daysSinceLastInteraction++;
-            if(daysSinceLastInteraction >= 2)
+            if (currentPlant != null)
+            {
+                currentPlant.OnDayPassed();
+
+                // Soil dries after 1 day
+                if (tileCondition == FarmTile.Condition.Planted_Wet  && !currentPlant.IsMature)
+                {
+                    tileCondition = FarmTile.Condition.Planted_Dry;
+                    UpdateVisual();
+                }
+                return;
+            }
+            else if(daysSinceLastInteraction >= 2)
             {
                 if(tileCondition == FarmTile.Condition.Watered) tileCondition = FarmTile.Condition.Tilled;
                 else if(tileCondition == FarmTile.Condition.Tilled) tileCondition = FarmTile.Condition.Grass;
             }
+            UpdateVisual();
+        }
+
+        public Plant GetPlant()
+        {
+            return currentPlant;
+        }
+
+        public bool Planting()
+        {
+            if (tileCondition != Condition.Tilled || currentPlant != null)
+                return false;
+
+            if (plantPrefab == null)
+                return false;
+
+            currentPlant = Instantiate(plantPrefab, transform);
+            currentPlant.transform.localPosition = new Vector3(0, -5f, 0);
+            currentPlant.transform.localRotation = Quaternion.identity;
+            currentPlant.transform.localScale = new Vector3(1f, 20f, 1f);  // fixes weird inherited scaling from farmtile
+            currentPlant.InitializeModels();
+            currentPlant.SetState(Plant.PlantState.Planted);
+            tileCondition = Condition.Planted_Dry;
+
+            return true;
+        }
+
+        private void RemovePlant()
+        {
+            if (currentPlant != null)
+            {
+                Destroy(currentPlant.gameObject);
+                currentPlant = null;
+                tileCondition = FarmTile.Condition.Tilled;
+                UpdateVisual();
+            }
+        }
+
+        public TileSave GetSaveData()
+        {
+            TileSave save = new TileSave();
+
+            save.condition = tileCondition;
+            save.daysSinceLastInteraction = daysSinceLastInteraction;
+
+            if (currentPlant != null)
+            {
+                save.plantData = currentPlant.GetSaveData();
+                save.plantData.hasPlant = true;
+            }
+            else
+            {
+                save.plantData = new PlantSave { hasPlant = false };
+            }
+
+            return save;
+        }
+
+        public void RestoreState(TileSave save)
+        {
+            tileCondition = save.condition;
+            daysSinceLastInteraction = save.daysSinceLastInteraction;
+
+            if (save.plantData.hasPlant)
+            {
+                PlantData dataToLoad;
+                switch (save.plantData.plantName)
+                {
+                    case "Tomato":
+                        dataToLoad = tomatoData;
+                        break;
+                    case "Corn":
+                        dataToLoad = cornData;
+                        break;
+                    case "Carrot":
+                        dataToLoad = carrotData;
+                        break;
+                    default:
+                        Debug.Log("Unknown plant: " + save.plantData.plantName);
+                        return;
+                }
+
+                currentPlant = Instantiate(plantPrefab, transform);
+
+                currentPlant.transform.localPosition = new Vector3(0, -5f, 0);
+                currentPlant.transform.localRotation = Quaternion.identity;
+                currentPlant.transform.localScale = new Vector3(1f, 20f, 1f);
+
+                // Restore the plant's internal state
+                currentPlant.LoadFromSaveData(save.plantData, dataToLoad);
+            }
+
             UpdateVisual();
         }
     }
