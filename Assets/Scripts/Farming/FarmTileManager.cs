@@ -47,8 +47,10 @@ namespace Farming
         private void SaveTileStates()
         {
             var saves = new List<TileSave>();
+
             foreach (FarmTile tile in tiles)
-                saves.Add(new TileSave { condition = tile.GetCondition, daysSinceLastInteraction = tile.DaysSinceLastInteraction });
+                saves.Add(tile.GetSaveData());
+
             GameManager.Instance.savedTileStates = saves;
             GameManager.Instance.hasSavedTiles = true;
         }
@@ -56,9 +58,11 @@ namespace Farming
         private void RestoreTileStates()
         {
             if (!GameManager.Instance.hasSavedTiles) return;
+
             List<TileSave> saves = GameManager.Instance.savedTileStates;
+
             for (int i = 0; i < tiles.Count && i < saves.Count; i++)
-                tiles[i].RestoreState(saves[i].condition, saves[i].daysSinceLastInteraction);
+                tiles[i].RestoreState(saves[i]);
         }
 
         public void OnDayPassed()

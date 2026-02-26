@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TomatoData
   m_EditorClassIdentifier: Assembly-CSharp::PlantData
   plantName: Tomato
-  daysToMature: 2
+  daysToMature: 3
   daysBeforeWither: 4
   sellValue: 10
   plantedModel: {fileID: 4529457730332442423, guid: add126a868c1e4e4cab7276f97ea8b41, type: 3}

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Environment;
+using Farming;
+using Core;
 
 namespace Farming 
 {
@@ -19,7 +21,10 @@ namespace Farming
         [Header("Planting")]
         [SerializeField] private Plant plantPrefab;
         private Plant currentPlant;
-  
+        [SerializeField] private PlantData tomatoData;
+        [SerializeField] private PlantData cornData; //placeholder
+        [SerializeField] private PlantData carrotData; //placeholder
+
 
         [Header("Audio")]
         [SerializeField] private AudioSource stepAudio;
@@ -54,7 +59,7 @@ namespace Farming
             switch(tileCondition)
             {
                 case FarmTile.Condition.Grass: Till(); break;
-                case FarmTile.Condition.Tilled: Plant(); break;
+                case FarmTile.Condition.Tilled: Planting(); break;
                 //case FarmTile.Condition.Watered: Debug.Log("Ready for planting"); break;
                 case FarmTile.Condition.Planted_Dry:
                 {
@@ -128,12 +133,7 @@ namespace Farming
             if (active) stepAudio.Play();
         }
 
-        public void RestoreState(Condition condition, int daysSince)
-        {
-            tileCondition = condition;
-            daysSinceLastInteraction = daysSince;
-            UpdateVisual();
-        }
+
 
         public void OnDayPassed()
         {
@@ -143,7 +143,7 @@ namespace Farming
                 currentPlant.OnDayPassed();
 
                 // Soil dries after 1 day
-                if (tileCondition == FarmTile.Condition.Planted_Wet)
+                if (tileCondition == FarmTile.Condition.Planted_Wet  && !currentPlant.IsMature)
                 {
                     tileCondition = FarmTile.Condition.Planted_Dry;
                     UpdateVisual();
@@ -163,7 +163,7 @@ namespace Farming
             return currentPlant;
         }
 
-        public bool Plant()
+        public bool Planting()
         {
             if (tileCondition != Condition.Tilled || currentPlant != null)
                 return false;
@@ -175,6 +175,8 @@ namespace Farming
             currentPlant.transform.localPosition = new Vector3(0, -5f, 0);
             currentPlant.transform.localRotation = Quaternion.identity;
             currentPlant.transform.localScale = new Vector3(1f, 20f, 1f);  // fixes weird inherited scaling from farmtile
+            currentPlant.InitializeModels();
+            currentPlant.SetState(Plant.PlantState.Planted);
             tileCondition = Condition.Planted_Dry;
 
             return true;
@@ -186,7 +188,66 @@ namespace Farming
             {
                 Destroy(currentPlant.gameObject);
                 currentPlant = null;
+                tileCondition = FarmTile.Condition.Tilled;
+                UpdateVisual();
             }
+        }
+
+        public TileSave GetSaveData()
+        {
+            TileSave save = new TileSave();
+
+            save.condition = tileCondition;
+            save.daysSinceLastInteraction = daysSinceLastInteraction;
+
+            if (currentPlant != null)
+            {
+                save.plantData = currentPlant.GetSaveData();
+                save.plantData.hasPlant = true;
+            }
+            else
+            {
+                save.plantData = new PlantSave { hasPlant = false };
+            }
+
+            return save;
+        }
+
+        public void RestoreState(TileSave save)
+        {
+            tileCondition = save.condition;
+            daysSinceLastInteraction = save.daysSinceLastInteraction;
+
+            if (save.plantData.hasPlant)
+            {
+                PlantData dataToLoad;
+                switch (save.plantData.plantName)
+                {
+                    case "Tomato":
+                        dataToLoad = tomatoData;
+                        break;
+                    case "Corn":
+                        dataToLoad = cornData;
+                        break;
+                    case "Carrot":
+                        dataToLoad = carrotData;
+                        break;
+                    default:
+                        Debug.Log("Unknown plant: " + save.plantData.plantName);
+                        return;
+                }
+
+                currentPlant = Instantiate(plantPrefab, transform);
+
+                currentPlant.transform.localPosition = new Vector3(0, -5f, 0);
+                currentPlant.transform.localRotation = Quaternion.identity;
+                currentPlant.transform.localScale = new Vector3(1f, 20f, 1f);
+
+                // Restore the plant's internal state
+                currentPlant.LoadFromSaveData(save.plantData, dataToLoad);
+            }
+
+            UpdateVisual();
         }
     }
 }

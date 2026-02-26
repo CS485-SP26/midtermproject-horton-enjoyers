@@ -1,4 +1,5 @@
 using UnityEngine;
+using Core;
 
 namespace Farming
 {
@@ -15,7 +16,7 @@ namespace Farming
         [Header("Plant Data")]
         [SerializeField] private PlantData plantData;
 
-        private PlantState currentState = PlantState.Planted;
+        private PlantState currentState;
 
         private int daysGrowing = 0;
         private int daysWithoutWater = 0;
@@ -29,17 +30,13 @@ namespace Farming
         public bool IsWithered => currentState == PlantState.Withered;
         public bool IsMature => currentState == PlantState.Mature;
 
-        private void Start()
-        {
-            InitializeModels();
-            SetState(PlantState.Planted);
-        }
+  
 
-        private void InitializeModels()
+        public void InitializeModels()
         {
             if (plantData == null)
             {
-                Debug.LogError("PlantData missing on Plant!");
+                Debug.LogError("PlantData missing on Plant! (ex. TomatoData)");
                 return;
             }
 
@@ -89,14 +86,14 @@ namespace Farming
             {
                 daysWithoutWater++;
 
-                if (daysWithoutWater >= 2)
+                if (daysWithoutWater >= plantData.daysBeforeWither)
                 {
                     SetState(PlantState.Withered);
                 }
             }
         }
 
-        private void SetState(PlantState newState)
+        public void SetState(PlantState newState)
         {
             currentState = newState;
             UpdateVisual();
@@ -130,7 +127,7 @@ namespace Farming
                     break;
             }
         }
-        /*
+        /* Needs to be implemented
         public int Harvest()
         {
             if (currentState != PlantState.Mature)
@@ -141,5 +138,44 @@ namespace Farming
             return value;
         }
         */
+
+        public PlantSave GetSaveData()
+        {
+            PlantSave save = new PlantSave();
+
+            save.hasPlant = true;
+            save.plantName = plantData.plantName;
+            save.growthStage = daysGrowing;   
+            save.isWatered = daysWatered > 0;   
+            save.isWithered = IsWithered;   
+    
+
+            return save;
+        }
+
+        public void LoadFromSaveData(PlantSave save, PlantData loadedPlantData)
+        {
+            if (!save.hasPlant)
+                return;
+
+            plantData = loadedPlantData;
+
+            daysGrowing = save.growthStage;
+            daysWatered = save.isWatered ? 1 : 0;
+            daysWithoutWater = save.isWatered ? 0 : daysWithoutWater;
+
+            InitializeModels();
+
+
+            if (save.isWithered)
+                SetState(PlantState.Withered);
+            else if (daysGrowing >= plantData.daysToMature)
+                SetState(PlantState.Mature);
+            else if (daysGrowing > 0)
+                SetState(PlantState.Growing);
+            else
+                SetState(PlantState.Planted);
+
+        }
     }
 }
