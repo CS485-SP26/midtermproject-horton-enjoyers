@@ -5,7 +5,7 @@ public class PlantData : ScriptableObject
 {
     public string plantName;
 
-    public int daysToMature = 3;
+    public int daysToMature = 2;
     public int daysBeforeWither = 2;
 
     public int sellValue = 10;

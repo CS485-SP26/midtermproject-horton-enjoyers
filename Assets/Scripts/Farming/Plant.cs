@@ -27,6 +27,7 @@ namespace Farming
         private GameObject matureModel;
         private GameObject witheredModel;
 
+        public PlantState CurrentState => currentState; //can be useful in other scripts, like for quest evaluation
         public bool IsWithered => currentState == PlantState.Withered;
         public bool IsMature => currentState == PlantState.Mature;
 
@@ -62,13 +63,14 @@ namespace Farming
 
         public void OnDayPassed()
         {
+            if (plantData == null) 
+                return;
+
             if (IsWithered || IsMature)
                 return;
 
             if (daysWatered > 0)
             {
-                daysWatered--;
-
                 if (currentState == PlantState.Planted)
                     SetState(PlantState.Growing);
 
@@ -81,6 +83,8 @@ namespace Farming
                 {
                     SetState(PlantState.Mature);
                 }
+
+                daysWatered--;
             }
             else
             {
@@ -95,6 +99,7 @@ namespace Farming
 
         public void SetState(PlantState newState)
         {
+            Debug.Log("Plant state changing from " + currentState + " to " + newState);
             currentState = newState;
             UpdateVisual();
         }
@@ -103,6 +108,9 @@ namespace Farming
         {
             if (plantedModel == null) return;
 
+            Debug.Log("UpdateVisual called, state = " + currentState);
+            Debug.Log("matureModel active: " + matureModel + " | growingModel active: " + growingModel);
+            
             plantedModel.SetActive(false);
             growingModel.SetActive(false);
             matureModel.SetActive(false);
