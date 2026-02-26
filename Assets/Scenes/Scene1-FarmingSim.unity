@@ -1382,7 +1382,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::energyprogressbar
   energy: {fileID: 784180694}
   bar: {fileID: 117565280}
+  fillImage: {fileID: 60198585}
   showNumbers: 1
+  greenColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
+  yellowColor: {r: 1, g: 0.8, b: 0.2, a: 1}
+  redColor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
 --- !u!114 &117565280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,6 +1401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProgressBar
   fillImage: {fileID: 60198585}
   fillText: {fileID: 26384880}
+  smoothSpeed: 8
 --- !u!1 &123872198
 GameObject:
   m_ObjectHideFlags: 0
@@ -5901,6 +5906,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Energybar
       objectReference: {fileID: 0}
+    - target: {fileID: 8995670806891669389, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995670806891669389, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: daee8f61cba2be84a962acd1cb322351, type: 3}
+    - target: {fileID: 8995670806891669389, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_Color.b
+      value: 0.12941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995670806891669389, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_Color.g
+      value: 0.83137256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995670806891669389, guid: 991d3fe03c7a50640b727595a54782ef, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8028604
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8704,6 +8729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 550bb88b207175a489376f2e8459d91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.GameManager
+  playerData:
+    EnergyLevel: 0
   startingFunds: 100
   startingSeeds: 5
   savedDay: 1
@@ -9645,6 +9672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProgressBar
   fillImage: {fileID: 329147190}
   fillText: {fileID: 262371438}
+  smoothSpeed: 8
 --- !u!1 &1135064475
 GameObject:
   m_ObjectHideFlags: 0
@@ -14183,6 +14211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProgressBar
   fillImage: {fileID: 1243002761}
   fillText: {fileID: 1982725302}
+  smoothSpeed: 8
 --- !u!1 &1600655121
 GameObject:
   m_ObjectHideFlags: 0

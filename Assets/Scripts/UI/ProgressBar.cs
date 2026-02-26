@@ -2,19 +2,28 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class ProgressBar : MonoBehaviour
+{
+    [SerializeField] private Image fillImage;
+    [SerializeField] private TextMeshProUGUI fillText;
+    [SerializeField] private float smoothSpeed = 8f;
+
+    private float targetFill = 1f;
+
+    public float Fill
     {
-        [SerializeField] private Image fillImage;
-        [SerializeField] private TextMeshProUGUI fillText;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-        public float Fill { set { fillImage.fillAmount = value; } }
-
-        public void SetText(string text)
-        {
-            fillText.text = text;
-        }
-        
+        set { targetFill = Mathf.Clamp01(value); }
     }
 
+    private void Update()
+    {
+        if (fillImage == null) return;
+        fillImage.fillAmount = Mathf.Lerp(fillImage.fillAmount, targetFill, Time.deltaTime * smoothSpeed);
+    }
+
+    public void SetText(string text)
+    {
+        if (fillText == null) return;
+        fillText.text = text;
+    }
+}
