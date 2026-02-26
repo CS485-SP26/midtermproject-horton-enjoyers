@@ -16,6 +16,14 @@ namespace Farming{
         [SerializeField] private float waterPerUse = 0.2f;
         [SerializeField] private Core.DailyQuestManager questManager;
         [SerializeField] private GameManager gameManager;
+
+
+        [SerializeField] private PlayerEnergy energy;
+        [SerializeField] private float tillEnergyCost = 20f;   // tweak
+        [SerializeField] private float waterEnergyCost = 10f;  // tweak
+
+
+
         AnimatedController animatedController;
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,6 +38,11 @@ namespace Farming{
             waterBarUI.SetText("Water Level");
             waterBarUI.Fill = GameManager.Instance.playerData.WaterLevel;
             fundsText.text = "Funds: $" + GameManager.Instance.playerData.Funds;
+        
+            if (energy == null)
+                energy = GetComponent<PlayerEnergy>();
+
+            Debug.Assert(energy, "Farmer requires PlayerEnergy (add PlayerEnergy to the same GameObject or assign it).");        
         }
 
 
@@ -52,35 +65,57 @@ namespace Farming{
         }
 
         public void TryFarming(FarmTile tile)
-        {
-            Debug.Log("Trying to farm");
-            if (tile == null) return;
-            Debug.Log("Condition" + tile.GetCondition);
-            switch (tile.GetCondition)
+            {
+                Debug.Log("Trying to farm");
+                if (tile == null) return;
+
+                Debug.Log("Condition" + tile.GetCondition);
+
+                switch (tile.GetCondition)
                 {
-                    
                     case FarmTile.Condition.Grass:
                     {
+                        // Energy check for tilling
+                        if (!energy.Consume(tillEnergyCost))
+                        {
+                            Debug.Log("Not enough energy to till.");
+                            return;
+                        }
+
                         tile.Interact();
                         animatedController.SetTrigger("Till");
                         questManager?.NotifyTilled();
                         break;
                     }
+
                     case FarmTile.Condition.Tilled:
                     {
+                        // Must have enough water first
                         if (GameManager.Instance.playerData.WaterLevel >= waterPerUse)
                         {
+                            // Energy check for watering
+                            if (!energy.Consume(waterEnergyCost))
+                            {
+                                Debug.Log("Not enough energy to water.");
+                                return;
+                            }
+
                             tile.Interact();
                             animatedController.SetTrigger("Water");
                             GameManager.Instance.playerData.UseWater(waterPerUse);
                             waterBarUI.Fill = GameManager.Instance.playerData.WaterLevel;
                             questManager?.NotifyWatered();
                         }
+                        else
+                        {
+                            Debug.Log("Not enough water to water.");
+                        }
+
                         break;
-                    }
-                    default: break;
+                     }
+                            default:
+                            break;
                 }
-            
-        }
+            }
     }
 }

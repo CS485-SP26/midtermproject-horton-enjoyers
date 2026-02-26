@@ -10,6 +10,8 @@ namespace Core
         public int Funds { get; private set; }
         public int Seeds { get; private set; }
         public float WaterLevel { get; private set; }
+
+        public float EnergyLevel = 1f; 
         public PlayerData(int startingFunds, int startingSeeds)
         {
             Funds = startingFunds;
