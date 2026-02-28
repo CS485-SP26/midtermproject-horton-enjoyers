@@ -43,6 +43,16 @@ namespace Core
             Seeds += amount;
         }
 
+        public int SellAllPlants(int pricePerPlant)
+        {
+            int earned = Plants * pricePerPlant;
+            Plants = 0;
+            AddFunds(earned);
+            return earned;
+        }
+
+
+
         public bool UseSeed()
         {   
             if (Seeds >=1)
