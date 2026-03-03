@@ -1,56 +1,17 @@
-using UnityEngine;
+using Farming;
 
-public class WateringCan : MonoBehaviour
+/// <summary>
+/// Legacy component kept so existing prefabs don't lose their reference.
+/// Pickup/drop logic now lives in ToolPickup (base class).
+/// toolType defaults to WaterCan — override in Inspector if needed.
+/// </summary>
+public class WateringCan : ToolPickup
 {
-    [SerializeField] private Transform handTransform;
-    [SerializeField] private Transform playerTransform;
-    private bool isPickedUp = false;
-    [SerializeField] private Rigidbody rb;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        Debug.Assert(rb, "This wateringcan requires a Rigidbody.");
-    }
+        if (toolType == ToolType.None)
+            toolType = ToolType.WaterCan;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !isPickedUp)
-        {
-            Debug.Log("Picked up");
-            isPickedUp =true;
-            rb.isKinematic = true;
-            rb.detectCollisions = false;
-
-
-            transform.SetParent(handTransform);
-            transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.identity;
-            
-        }
-    }
-
-    public void Drop()
-    {
-        if (isPickedUp)
-        {
-            isPickedUp = false;
-            transform.SetParent(null);
-
-            transform.position = playerTransform.position + playerTransform.forward * 1.5f;
-
-            transform.rotation = Quaternion.identity;
-            rb.isKinematic = false;
-            rb.detectCollisions = true;
-            rb.useGravity = true;
-        };
-
+        base.Start();
     }
 }

@@ -9,8 +9,6 @@ namespace Farming{
     [RequireComponent(typeof(AnimatedController))]
     public class Farmer : MonoBehaviour
     {
-        [SerializeField] private GameObject waterCan;
-        [SerializeField] private GameObject gardenHoe;
         [SerializeField] private TMP_Text fundsText;
         [SerializeField] private ProgressBar waterBarUI;
         [SerializeField] private float waterPerUse = 0.2f;
@@ -25,16 +23,20 @@ namespace Farming{
 
 
         AnimatedController animatedController;
-        
+
+        public ToolType ActiveTool { get; private set; } = ToolType.None;
+
+        public void SetActiveTool(ToolType type)
+        {
+            ActiveTool = type;
+        }
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            Debug.Assert(waterCan, "Farmer requires a waterCan.");
-            Debug.Assert(gardenHoe, "Farmer requires a gardenHoe.");
             Debug.Assert(waterBarUI, "Farmer requires a waterLevel ProgressBar.");
             Debug.Assert(fundsText, "Farmer needs fundsText");
             animatedController = GetComponent<AnimatedController>();
-            SetTool("None");
             waterBarUI.SetText("Water Level");
             waterBarUI.Fill = GameManager.Instance.playerData.WaterLevel;
             fundsText.text = "Funds: $" + GameManager.Instance.playerData.Funds;
@@ -46,20 +48,13 @@ namespace Farming{
         }
 
 
-        public void SetTool(string tool)
-            {
-                Debug.Log("Recieved" + tool);
-                waterCan.SetActive(false);
-                gardenHoe.SetActive(false);
-                switch (tool)
-                {
-                    case "GardenHoe": gardenHoe.SetActive(true); break;
-                    case "WaterCan": waterCan.SetActive(true); break;
-                }
-            }
-
         public void RefillWater()
         {
+            if (ActiveTool != ToolType.WaterCan)
+            {
+                Debug.Log("Need to be holding the Watering Can to refill.");
+                return;
+            }
             GameManager.Instance.playerData.AddWater(1f);
             waterBarUI.Fill = GameManager.Instance.playerData.WaterLevel;
         }
@@ -81,7 +76,12 @@ namespace Farming{
                 {
                     case FarmTile.Condition.Grass:
                     {
-                        // Energy check for tilling
+                        if (ActiveTool != ToolType.GardenHoe)
+                        {
+                            Debug.Log("Need the Garden Hoe to till.");
+                            return;
+                        }
+
                         if (!energy.Consume(tillEnergyCost))
                         {
                             Debug.Log("Not enough energy to till.");
@@ -96,16 +96,17 @@ namespace Farming{
 
                     case FarmTile.Condition.Tilled:
                     {
+                        if (ActiveTool == ToolType.WaterCan)
+                        {
+                            Debug.Log("Can't plant while holding the Watering Can.");
+                            return;
+                        }
 
-                        // Must have enough water first
-                        if (GameManager.Instance.playerData.WaterLevel >= waterPerUse)
                         if (GameManager.Instance.playerData.Seeds > 0)
                         {
                             if (tile.Planting())
                             {
                                 GameManager.Instance.playerData.UseSeed();
-                                // Optional planting animation later
-                                // animatedController.SetTrigger("Plant");
                             }
                         }
                         else
@@ -115,16 +116,33 @@ namespace Farming{
 
                         break;
                     }
+
                     case FarmTile.Condition.Planted_Dry:
                     {
                         if (tile.GetPlant().IsWithered)
                         {
+                            if (ActiveTool != ToolType.GardenHoe)
+                            {
+                                Debug.Log("Need the Garden Hoe to remove a withered plant.");
+                                return;
+                            }
                             tile.Interact();
                             animatedController.SetTrigger("Till");
-                        } 
-                        else if (GameManager.Instance.playerData.WaterLevel >= waterPerUse)
+                        }
+                        else
                         {
-                            // Energy check for watering
+                            if (ActiveTool != ToolType.WaterCan)
+                            {
+                                Debug.Log("Need the Watering Can to water plants.");
+                                return;
+                            }
+
+                            if (GameManager.Instance.playerData.WaterLevel < waterPerUse)
+                            {
+                                Debug.Log("Not enough water.");
+                                return;
+                            }
+
                             if (!energy.Consume(waterEnergyCost))
                             {
                                 Debug.Log("Not enough energy to water.");
@@ -137,15 +155,11 @@ namespace Farming{
                             waterBarUI.Fill = GameManager.Instance.playerData.WaterLevel;
                             questManager?.NotifyWatered();
                         }
-                        else
-                        {
-                            Debug.Log("Not enough water to water.");
-                        }
-
                         break;
-                     }
-                            default:
-                            break;
+                    }
+
+                    default:
+                        break;
                 }
             }
     }

@@ -13,12 +13,20 @@ namespace Character
         MovementController moveController;
         AnimatedController animatedController;
         [SerializeField] private TileSelector tileSelector;
+        [SerializeField] private Transform handTransform;
         Farmer farmer;
         IInteractable nearbyInteractable;
+        ToolPickup nearbyTool;
+        ToolPickup heldTool;
 
         public void SetNearbyInteractable(IInteractable interactable)
         {
             nearbyInteractable = interactable;
+        }
+
+        public void SetNearbyTool(ToolPickup tool)
+        {
+            nearbyTool = tool;
         }
 
         void Start()
@@ -56,6 +64,35 @@ namespace Character
             FarmTile tile = tileSelector.GetSelectedTile();
             farmer.TryFarming(tile);
         }
-        
+
+        public void OnPickup(InputValue value)
+        {
+            if (heldTool != null)
+            {
+                Vector3 dropPos = transform.position + transform.forward * 1.5f;
+                heldTool.Drop(dropPos, farmer);
+                heldTool = null;
+                return;
+            }
+
+            if (nearbyTool != null)
+            {
+                Debug.Assert(handTransform, "PlayerController needs a handTransform assigned to pick up tools.");
+                nearbyTool.Pickup(handTransform, farmer);
+                heldTool = nearbyTool;
+                nearbyTool = null;
+            }
+        }
+
+        void OnDisable()
+        {
+            // Clear tool state so it's clean when the farm scene reloads.
+            // Don't call Drop() here — scene teardown may have already destroyed the tool object.
+            if (farmer != null)
+                farmer.SetActiveTool(ToolType.None);
+            heldTool = null;
+            nearbyTool = null;
+        }
+
     }
 }
