@@ -22,8 +22,8 @@ namespace Farming
         [SerializeField] private Plant plantPrefab;
         private Plant currentPlant;
         [SerializeField] private PlantData tomatoData;
-        [SerializeField] private PlantData cornData; //placeholder
-        [SerializeField] private PlantData carrotData; //placeholder
+        [SerializeField] private PlantData cactusData; //placeholder
+        [SerializeField] private PlantData cucumberData; //placeholder
 
 
         [Header("Audio")]
@@ -236,10 +236,10 @@ namespace Farming
                         dataToLoad = tomatoData;
                         break;
                     case "Corn":
-                        dataToLoad = cornData;
+                        dataToLoad = cactusData;
                         break;
                     case "Carrot":
-                        dataToLoad = carrotData;
+                        dataToLoad = cucumberData;
                         break;
                     default:
                         Debug.Log("Unknown plant: " + save.plantData.plantName);

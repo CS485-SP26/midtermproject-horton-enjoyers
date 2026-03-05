@@ -12,10 +12,10 @@ public class PlayerStatsDisplay : MonoBehaviour
     void Update()
     {
         if (fundsText != null)
-            fundsText.text = "Funds: " + GameManager.Instance.playerData.Funds;
+            fundsText.text = "Funds: $" + GameManager.Instance.playerData.Funds;
 
         if (seedCountText != null)
-            seedCountText.text = "Seeds: " + GameManager.Instance.playerData.Seeds;
+            seedCountText.text = "Seeds: " + GameManager.Instance.playerData.tomatoSeeds;
 
         if (plantsText != null)
             plantsText.text = "Plants: " + GameManager.Instance.playerData.Plants;

@@ -102,11 +102,11 @@ namespace Farming{
                             return;
                         }
 
-                        if (GameManager.Instance.playerData.Seeds > 0)
+                        if (GameManager.Instance.playerData.tomatoSeeds > 0)
                         {
                             if (tile.Planting())
                             {
-                                GameManager.Instance.playerData.UseSeed();
+                                GameManager.Instance.playerData.UseSeed(PlayerData.seedType.tomato);
                             }
                         }
                         else

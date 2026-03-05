@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -8,7 +9,10 @@ namespace Core
     {
 
         public int Funds { get; private set; }
-        public int Seeds { get; private set; }
+        public int tomatoSeeds { get; private set; }
+        public int cactusSeeds { get; private set; }
+        public int cucumberSeeds { get; private set; }
+        public enum seedType {tomato, cactus, cucumber}
         public float WaterLevel { get; private set; }
 
         public int Plants; // I think this works??
@@ -17,7 +21,7 @@ namespace Core
         public PlayerData(int startingFunds, int startingSeeds)
         {
             Funds = startingFunds;
-            Seeds = startingSeeds;
+            tomatoSeeds = startingSeeds;
             WaterLevel = 1f;
         }
 
@@ -38,9 +42,15 @@ namespace Core
             return true;
         }
 
-        public void AddSeeds(int amount)
+        public void AddSeeds(Enum seed, int amount)
         {
-            Seeds += amount;
+            switch(seed)
+            {
+                case seedType.tomato: tomatoSeeds += amount; break;
+                case seedType.cactus: cactusSeeds += amount; break;
+                case seedType.cucumber: cucumberSeeds += amount; break;
+            }
+
         }
 
         public int SellAllPlants(int pricePerPlant)
@@ -53,15 +63,36 @@ namespace Core
 
 
 
-        public bool UseSeed()
+        public bool UseSeed(Enum seed)
         {   
-            if (Seeds >=1)
+            switch(seed)
             {
-                Seeds -= 1;
-                return true;
+                case seedType.tomato: 
+                    if (tomatoSeeds >=1)
+                    {
+                        tomatoSeeds -= 1;
+                        return true;
+                    }
+                    else
+                        return false;
+                case seedType.cactus: 
+                    if (cactusSeeds >=1)
+                    {
+                        cactusSeeds -= 1;
+                        return true;
+                    }
+                    else
+                        return false;
+                case seedType.cucumber: 
+                    if (cucumberSeeds >=1)
+                    {
+                        cucumberSeeds -= 1;
+                        return true;
+                    }
+                    else
+                        return false;
             }
-            else
-                return false;
+            return false;
         }
 
         public void AddWater(float amount)

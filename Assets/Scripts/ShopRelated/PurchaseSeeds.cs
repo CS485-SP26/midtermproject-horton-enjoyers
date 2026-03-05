@@ -24,7 +24,7 @@ public class PurchaseSeeds : MonoBehaviour
     {
         if (GameManager.Instance.playerData.SpendFunds(cost))
         {
-            GameManager.Instance.playerData.AddSeeds(seedsPerPurchase);
+            // GameManager.Instance.playerData.AddSeeds(seedsPerPurchase);
         }
         UpdateUI();
     }
