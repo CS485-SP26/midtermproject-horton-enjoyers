@@ -21,7 +21,7 @@ namespace Character {
             animator.SetTrigger(name);
         }
 
-
+        public void SetTool(string toolName) { }
         void Update()
         {
             moveSpeed = physicsController.GetHorizontalSpeedPercent();
