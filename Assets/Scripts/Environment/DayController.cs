@@ -64,13 +64,13 @@ namespace Environment
         {
             if (sunLight == null)
                 return;
-                
+
             // Calculate sun's rotation based on time of day
             // 0 degrees for sunrise, 180 for sunset, 360 for next sunrise
             float sunRotationX = Mathf.Lerp(0f, 360f, DayProgressPercent);
+            sunLight.transform.rotation = Quaternion.Euler(sunRotationX, 170f, 0f);
 
-            // Apply rotation to the sun light
-            sunLight.transform.rotation = Quaternion.Euler(sunRotationX, 0f, 0f);
+
 
             // Optional: Adjust other elements, like skybox, light source intensity, and so on
             // sunLight.intensity = 

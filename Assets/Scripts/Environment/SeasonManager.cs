@@ -16,7 +16,9 @@ namespace Environment
 
         [Header("References")]
         [SerializeField] private DayController dayController;
+        [SerializeField] private TMP_Text timeLabel;
 
+        private float lastProgress = -1f;
         private int lastDay = -1;
 
         public Season CurrentSeason { get; private set; }
@@ -25,6 +27,8 @@ namespace Environment
 
         void Update()
         {
+            UpdateTimeLabel();
+
             int day = dayController.CurrentDay;
             if (day == lastDay) return;
             lastDay = day;
@@ -32,6 +36,7 @@ namespace Environment
             Recalculate(day);
             UpdateLabel();
         }
+
 
         private void Recalculate(int day)
         {
@@ -54,6 +59,23 @@ namespace Environment
                 DayNumber
             );
         }
+
+        private void UpdateTimeLabel()
+        {
+            if (timeLabel == null || dayController == null) return;
+
+            float progress = dayController.DayProgressPercent;
+            float totalHours = (progress * 24f + 6f) % 24f; // offset: day starts at 6 AM
+            int hour = (int)totalHours;
+            int minute = (int)((totalHours - hour) * 60f);
+
+            string period = hour >= 12 ? "PM" : "AM";
+            int displayHour = hour % 12;
+            if (displayHour == 0) displayHour = 12;
+
+            timeLabel.SetText(displayHour + ":" + minute.ToString("D2") + " " + period);
+        }
+
 
     }
 }
