@@ -9,7 +9,7 @@ namespace Environment
         public enum Season { Spring, Summer, Fall, Winter }
 
         private const int DaysPerWeek = 7;
-        private const int DaysPerSeason = 28; // 4 weeks per season
+        private const int DaysPerSeason = 6; // 4 weeks per season
 
         [Header("UI")]
         [SerializeField] private TMP_Text seasonLabel;
@@ -54,7 +54,7 @@ namespace Environment
             if (seasonLabel == null) return;
 
             seasonLabel.SetText(
-                CurrentSeason.ToString() + " - " + CurrentDay.ToString() + " Day: {0}",
+                CurrentSeason.ToString() + " - " + CurrentDay.ToString() + "\nDay: {0}",
                 DayNumber
             );
         }

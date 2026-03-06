@@ -10143,7 +10143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightControl
   sunLight: {fileID: 410087040}
-  dayLengthSeconds: 60
+  dayLengthSeconds: 10
   dayProgressSeconds: 0
   currentDay: 1
   dayPassedEvent:
