@@ -28,7 +28,6 @@ namespace Environment
         void Update()
         {
             UpdateTimeLabel();
-
             int day = dayController.CurrentDay;
             if (day == lastDay) return;
             lastDay = day;

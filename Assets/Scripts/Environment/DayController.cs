@@ -10,7 +10,6 @@ namespace Environment
     {
         [Header("Object References")]
         [SerializeField] private Light sunLight;
-        [SerializeField] private TMP_Text dayLabel;
         
         [Header("Time Constraints")]
         [SerializeField] private float dayLengthSeconds = 60f;
@@ -28,8 +27,8 @@ namespace Environment
         {
             currentDay = GameManager.Instance.savedDay;
             dayProgressSeconds = GameManager.Instance.savedDayProgress;
-            if (dayLabel) dayLabel.SetText("Days: {0}", currentDay);
         }
+
 
         void OnDisable()
         {
@@ -40,21 +39,11 @@ namespace Environment
         public void AdvanceDay()
         {
             Debug.Assert(sunLight, "DayController requires a 'Sun'");
-            if (dayLabel == null) Debug.Log("DayController does not have a label to update");
 
             dayProgressSeconds = 0f; // Reset to start a new day
             currentDay++;
             GameManager.Instance.savedDay = currentDay;
             GameManager.Instance.savedDayProgress = 0f;
-
-            if (dayLabel)
-            {
-                // Don't do this! It generates garbage (will eventually invoke Garbage Collect)
-                //dayLabel.text="Days: " + currentDay.ToString();
-
-                // Do this instead
-                dayLabel.SetText("Days: {0}", currentDay);
-            }
 
             dayEvaluationEvent.Invoke(); // Quest evaluation BEFORE tile degradation
             dayPassedEvent.Invoke(); //make announcement to all listeners
