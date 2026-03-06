@@ -32,9 +32,14 @@ namespace Farming
         public bool IsMature => currentState == PlantState.Mature;
 
   
+        public void SetPlantType(PlantData data)
+        {
+            plantData = data;
+        }
 
         public void InitializeModels()
         {
+            
             if (plantData == null)
             {
                 Debug.LogError("PlantData missing on Plant! (ex. TomatoData)");
@@ -138,11 +143,11 @@ namespace Farming
 
         public int Harvest()
         {
-        // If it's withered → allow harvesting BUT give nothing
-        if (currentState == PlantState.Withered)
-        {
-            Destroy(gameObject);
-            return 0;
+            // If it's withered → allow harvesting BUT give nothing
+            if (currentState == PlantState.Withered)
+            {
+                Destroy(gameObject);
+                return 0;
             }
 
             // Only give reward if Mature
@@ -151,7 +156,13 @@ namespace Farming
 
             // Add to NEW currency: Plants
             int amount = 1; // you can scale this later (e.g., plantData.yield)
-            GameManager.Instance.playerData.Plants += amount;
+            switch(plantData.plantName)
+            {
+                case "Tomato": GameManager.Instance.playerData.tomatoPlants += amount; break;
+                case "Cactus": GameManager.Instance.playerData.cactusPlants += amount; break;
+                case "Cucumber": GameManager.Instance.playerData.cucumberPlants += amount; break;
+            }
+            
 
             Destroy(gameObject);
             return amount;

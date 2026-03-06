@@ -8,7 +8,6 @@ public class PlantData : ScriptableObject
     public int daysToMature = 2;
     public int daysBeforeWither = 2;
 
-    public int sellValue = 10;
 
     [Header("Models")]
     public GameObject plantedModel;

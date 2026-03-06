@@ -24,19 +24,31 @@ public class SellPlants : MonoBehaviour
     public void OnSell()
     {
         var data = GameManager.Instance.playerData;
-        if (data.Plants <= 0) return;
+        int plantCount = data.tomatoPlants + data.cactusPlants + data.cucumberPlants;
+        if (plantCount <= 0) return;
 
-        data.SellAllPlants(pricePerPlant);
+        data.SellAllPlants(sellTotal());
         UpdateUI();
     }
 
     private void UpdateUI()
     {
         var data = GameManager.Instance.playerData;
-        bool hasPlants = data.Plants > 0;
+        int plantCount = data.tomatoPlants + data.cactusPlants + data.cucumberPlants;
+        bool hasPlants = plantCount > 0;
         sellButton.gameObject.SetActive(hasPlants);
 
         if (plantCountText != null)
-            plantCountText.text = $"Plants: {data.Plants}  (+${data.Plants * pricePerPlant})";
+            plantCountText.text = $"Plants: {plantCount}  (+${sellTotal()})";
+    }
+
+    public int sellTotal()
+    {
+        var data = GameManager.Instance.playerData;
+        int total = 
+            data.tomatoPlants * GameBalance.TomatoPlantValue +
+            data.cactusPlants * GameBalance.CactusPlantValue + 
+            data.cucumberPlants * GameBalance.CucumberPlantValue;
+        return total;
     }
 }

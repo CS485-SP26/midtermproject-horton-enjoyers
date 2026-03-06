@@ -22,8 +22,8 @@ namespace Farming
         [SerializeField] private Plant plantPrefab;
         private Plant currentPlant;
         [SerializeField] private PlantData tomatoData;
-        [SerializeField] private PlantData cactusData; //placeholder
-        [SerializeField] private PlantData cucumberData; //placeholder
+        [SerializeField] private PlantData cactusData;
+        [SerializeField] private PlantData cucumberData;
 
 
         [Header("Audio")]
@@ -59,7 +59,7 @@ namespace Farming
             switch(tileCondition)
             {
                 case FarmTile.Condition.Grass: Till(); break;
-                case FarmTile.Condition.Tilled: Planting(); break;
+                case FarmTile.Condition.Tilled: break;
                 //case FarmTile.Condition.Watered: Debug.Log("Ready for planting"); break;
                 case FarmTile.Condition.Planted_Dry:
                 {
@@ -170,18 +170,26 @@ namespace Farming
             return currentPlant;
         }
 
-        public bool Planting()
+        public bool Planting(PlayerData.seedType seedType)
         {
             if (tileCondition != Condition.Tilled || currentPlant != null)
                 return false;
 
             if (plantPrefab == null)
                 return false;
-
+            
+            
             currentPlant = Instantiate(plantPrefab, transform);
             currentPlant.transform.localPosition = new Vector3(0, -5f, 0);
             currentPlant.transform.localRotation = Quaternion.identity;
             currentPlant.transform.localScale = new Vector3(1f, 20f, 1f);  // fixes weird inherited scaling from farmtile
+
+            switch(seedType)
+            {
+                case PlayerData.seedType.tomato: currentPlant.SetPlantType(tomatoData); break;
+                case PlayerData.seedType.cactus: currentPlant.SetPlantType(cactusData); break;
+                case PlayerData.seedType.cucumber: currentPlant.SetPlantType(cucumberData); break;
+            }
             currentPlant.InitializeModels();
             currentPlant.SetState(Plant.PlantState.Planted);
             tileCondition = Condition.Planted_Dry;
@@ -235,10 +243,10 @@ namespace Farming
                     case "Tomato":
                         dataToLoad = tomatoData;
                         break;
-                    case "Corn":
+                    case "Cactus":
                         dataToLoad = cactusData;
                         break;
-                    case "Carrot":
+                    case "Cucumber":
                         dataToLoad = cucumberData;
                         break;
                     default:

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Shop;
 
 
 namespace Core
@@ -12,16 +13,23 @@ namespace Core
         public int tomatoSeeds { get; private set; }
         public int cactusSeeds { get; private set; }
         public int cucumberSeeds { get; private set; }
+        
         public enum seedType {tomato, cactus, cucumber}
+
+        public seedType equippedSeed = seedType.tomato;
         public float WaterLevel { get; private set; }
 
-        public int Plants; // I think this works??
+        public int tomatoPlants = 0;
+        public int cactusPlants = 0;
+        public int cucumberPlants = 0;
 
         public float EnergyLevel = 1f; 
         public PlayerData(int startingFunds, int startingSeeds)
         {
             Funds = startingFunds;
             tomatoSeeds = startingSeeds;
+            cactusSeeds = startingSeeds;
+            cucumberSeeds = startingSeeds;
             WaterLevel = 1f;
         }
 
@@ -53,15 +61,37 @@ namespace Core
 
         }
 
-        public int SellAllPlants(int pricePerPlant)
+        public void SellAllPlants(int earned)
         {
-            int earned = Plants * pricePerPlant;
-            Plants = 0;
+            tomatoPlants = 0;
+            cactusPlants = 0;
+            cucumberPlants = 0;
             AddFunds(earned);
-            return earned;
         }
 
+        public int getEquippedSeedCount(seedType type)
+        {
+            switch(type)
+            {
+                case seedType.tomato: return tomatoSeeds;
+                case seedType.cactus: return cactusSeeds;
+                case seedType.cucumber: return cucumberSeeds;
+            }
+            return 0;
+        }
 
+        public void CycleSeed()
+        {
+            seedType type = equippedSeed;
+
+            switch(type)
+            {
+                case seedType.tomato: equippedSeed = seedType.cactus; break;
+                case seedType.cactus: equippedSeed = seedType.cucumber; break;
+                case seedType.cucumber: equippedSeed = seedType.tomato; break;
+            }
+            Debug.Log("Seed changed to " + equippedSeed);
+        }
 
         public bool UseSeed(Enum seed)
         {   

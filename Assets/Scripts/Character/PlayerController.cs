@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Farming;
+using Core;
 
 namespace Character 
 {
@@ -92,6 +93,11 @@ namespace Character
                 farmer.SetActiveTool(ToolType.None);
             heldTool = null;
             nearbyTool = null;
+        }
+
+        public void OnCycleSeed()
+        {
+            GameManager.Instance.playerData.CycleSeed();
         }
 
     }
