@@ -11,7 +11,7 @@ namespace Character
     {
         
         
-        MovementController moveController;
+        protected MovementController moveController;
         AnimatedController animatedController;
         [SerializeField] private TileSelector tileSelector;
         [SerializeField] private Transform handTransform;
@@ -43,7 +43,7 @@ namespace Character
             
             
         }
-        public void OnMove(InputValue inputValue)
+        public virtual void OnMove(InputValue inputValue)
         {
             Vector2 inputVector = inputValue.Get<Vector2>();
             moveController.Move(inputVector);

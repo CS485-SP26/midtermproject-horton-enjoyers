@@ -8,11 +8,17 @@ namespace Character
         [SerializeField] float drag = 0.5f;
         [SerializeField] float rotationSpeed = 0.1f;
 
+        Vector3 facingDirection = Vector3.forward;
         
         protected override void Start()
         {
             base.Start();
             rb.linearDamping = drag;
+        }
+
+        public void SetFacingDirection(Vector3 direction)
+        {
+            facingDirection = direction;
         }
 
         public override float GetHorizontalSpeedPercent()
@@ -40,7 +46,15 @@ namespace Character
         {
             // TODO integrate your physics from week 2-3
             Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y);
-            movement *= acceleration;
+
+            if (movement.magnitude < 0.1f)
+            {
+                // Kill horizontal velocity immediately when no input
+                rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
+                return;
+            }
+
+            movement = movement.normalized * acceleration;
             rb.AddForce(movement, ForceMode.Force);
             
         }
@@ -66,19 +80,15 @@ namespace Character
 
         void ApplyRotation()
         {
-            Vector3 direction = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-            if (direction.magnitude > 0.5f)
-            {
-                // 1. Calculate the target rotation (where we WANT to look)
-                Quaternion targetRotation = Quaternion.LookRotation(direction.normalized);
+            Vector3 direction = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+            if (direction.magnitude < 0.1f) return;
 
-                // 2. Smoothly rotate from our current rotation toward the target
-                transform.rotation = Quaternion.Slerp(
-                    transform.rotation, 
-                    targetRotation, 
-                    rotationSpeed * Time.fixedDeltaTime
-                );
-            }
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.fixedDeltaTime
+            );
         }
     }
 }
