@@ -8,6 +8,7 @@ public class PlayerStatsDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI seedCountText;
 
     [SerializeField] private TextMeshProUGUI plantsText;
+    [SerializeField] private TextMeshProUGUI seasonText;
 
     void Update()
     {
@@ -20,9 +21,18 @@ public class PlayerStatsDisplay : MonoBehaviour
             
             switch(type)
             {
-                case PlayerData.seedType.tomato: seedCountText.text = "Tomato Seeds: " + GameManager.Instance.playerData.tomatoSeeds; break;
-                case PlayerData.seedType.cactus: seedCountText.text = "Cactus Seeds: " + GameManager.Instance.playerData.cactusSeeds; break;
-                case PlayerData.seedType.cucumber: seedCountText.text = "Cucumber Seeds: " + GameManager.Instance.playerData.cucumberSeeds; break;
+                case PlayerData.seedType.tomato: 
+                    seedCountText.text = "Tomato Seeds: " + GameManager.Instance.playerData.tomatoSeeds; 
+                    if (seasonText != null) seasonText.text = "All Season";
+                    break;
+                case PlayerData.seedType.cactus: 
+                    seedCountText.text = "Cactus Seeds: " + GameManager.Instance.playerData.cactusSeeds; 
+                    if (seasonText != null) seasonText.text = "Summer & Fall";
+                    break;
+                case PlayerData.seedType.cucumber: 
+                    seedCountText.text = "Cucumber Seeds: " + GameManager.Instance.playerData.cucumberSeeds; 
+                    if (seasonText != null) seasonText.text = "Spring & Summer";
+                    break;
             }
         }
 
