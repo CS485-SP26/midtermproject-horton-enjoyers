@@ -103,12 +103,9 @@ namespace Farming
             {
                 switch(seasonManager.CurrentSeason)
                 {
-                    case SeasonManager.Season.Spring:
-                    case SeasonManager.Season.Fall: 
-                        witherProgress +=1f;
-                        Debug.Log("Spring or Fall Withering"); 
-                        break;
-                    case SeasonManager.Season.Summer: witherProgress +=1.5f; break;
+                    case SeasonManager.Season.Spring: witherProgress +=0.25f; break;
+                    case SeasonManager.Season.Summer: witherProgress +=1f; break;
+                    case SeasonManager.Season.Fall: witherProgress +=1.5f; break;
                     case SeasonManager.Season.Winter: witherProgress +=1.25f; break;
                 }
 
