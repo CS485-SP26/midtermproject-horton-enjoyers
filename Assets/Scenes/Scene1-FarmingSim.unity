@@ -8440,9 +8440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df99818dd50844bd7a8b4a722be391b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cameras.OverShoulder
-  offset: {x: 0, y: 1.5, z: -6}
+  offset: {x: 0, y: 1.35, z: -6}
   follow: {fileID: 784180683}
-  fixedXAngle: 30
+  fixedXAngle: 20
   speed: 8
 --- !u!1 &876916358
 GameObject:
@@ -19143,11 +19143,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 416930778977442110, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659258
+      value: 0.9848078
       objectReference: {fileID: 0}
     - target: {fileID: 416930778977442110, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2588191
+      value: 0.17364816
       objectReference: {fileID: 0}
     - target: {fileID: 416930778977442110, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: m_LocalRotation.y
@@ -19159,7 +19159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 416930778977442110, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 416930778977442110, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
