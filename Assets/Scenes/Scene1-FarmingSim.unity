@@ -7670,6 +7670,21 @@ MonoBehaviour:
   onEnergyChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &784180696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784180683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dffd4ff4404fb4b5494195cad68c3718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraController
+  tileSelector: {fileID: 0}
+  handTransform: {fileID: 0}
+  overShoulder: {fileID: 862829565}
 --- !u!1 &810048580
 GameObject:
   m_ObjectHideFlags: 0
@@ -8408,6 +8423,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853512679}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &862829559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8942792083406501520, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+  m_PrefabInstance: {fileID: 3669322243495948795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &862829565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862829559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df99818dd50844bd7a8b4a722be391b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cameras.OverShoulder
+  offset: {x: 0, y: 3, z: -6}
+  follow: {fileID: 784180683}
+  speed: 8
 --- !u!1 &876916358
 GameObject:
   m_ObjectHideFlags: 0
@@ -17505,6 +17540,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0a95fe38d64f8f442a8494977351b622, type: 3}
       insertIndex: -1
       addedObject: {fileID: 784180694}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0a95fe38d64f8f442a8494977351b622, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 784180696}
   m_SourcePrefab: {fileID: 100100000, guid: 0a95fe38d64f8f442a8494977351b622, type: 3}
 --- !u!1 &1971078522
 GameObject:
@@ -19142,6 +19180,10 @@ PrefabInstance:
       propertyPath: offset.z
       value: -4
       objectReference: {fileID: 0}
+    - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8942792083406501520, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -19149,7 +19191,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8942792083406501520, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 862829565}
   m_SourcePrefab: {fileID: 100100000, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
 --- !u!1001 &7841936059446111248
 PrefabInstance:
