@@ -7573,7 +7573,7 @@ Rigidbody:
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 2
+  m_AngularDamping: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -8440,8 +8440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df99818dd50844bd7a8b4a722be391b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cameras.OverShoulder
-  offset: {x: 0, y: 3, z: -6}
+  offset: {x: 0, y: 1.5, z: -6}
   follow: {fileID: 784180683}
+  fixedXAngle: 30
   speed: 8
 --- !u!1 &876916358
 GameObject:

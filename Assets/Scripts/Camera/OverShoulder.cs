@@ -5,6 +5,7 @@ namespace Cameras {
     public class OverShoulder : Follow
     {
         Quaternion rotationOverride = Quaternion.identity;
+        [SerializeField] float fixedXAngle = 20f;
         Vector3 rotationEuler = Vector3.zero;
         [SerializeField] float speed;
 
@@ -30,19 +31,29 @@ namespace Cameras {
         void Update()
         {
             Quaternion rOverride = rotationOverride;
+
             if (rotationEuler.magnitude > 0.001f)
             {
                 rOverride = Quaternion.Euler(rotationEuler);
             }
+
             Quaternion rotation = follow.transform.rotation * rOverride;
+
+            Vector3 euler = rotation.eulerAngles;
+            euler.x = fixedXAngle;
+            rotation = Quaternion.Euler(euler);
+
             Vector3 position = rotation * offset;
             position += follow.transform.position;
 
-            transform.rotation = Quaternion.Lerp(transform.rotation,
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation,
                 rotation,
                 Time.deltaTime * speed);
-            transform.position = Vector3.Lerp(transform.position, 
-                position, 
+
+            transform.position = Vector3.Lerp(
+                transform.position,
+                position,
                 Time.deltaTime * speed);
         }
 
