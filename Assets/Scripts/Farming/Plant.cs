@@ -1,5 +1,6 @@
 using UnityEngine;
 using Core;
+using Environment;
 
 namespace Farming
 {
@@ -19,7 +20,7 @@ namespace Farming
         private PlantState currentState;
 
         private int daysGrowing = 0;
-        private int daysWithoutWater = 0;
+        private float witherProgress = 0f;
         private int daysWatered = 0;
 
         private GameObject plantedModel;
@@ -30,6 +31,13 @@ namespace Farming
         public PlantState CurrentState => currentState; //can be useful in other scripts, like for quest evaluation
         public bool IsWithered => currentState == PlantState.Withered;
         public bool IsMature => currentState == PlantState.Mature;
+        private SeasonManager seasonManager;
+
+        private void Start()
+        {
+            seasonManager = FindAnyObjectByType<SeasonManager>();
+            Debug.Assert(seasonManager, "Plant needs access to seasonManager");
+        }
 
   
         public void SetPlantType(PlantData data)
@@ -62,7 +70,7 @@ namespace Farming
             if (IsWithered || IsMature)
                 return;
 
-            daysWithoutWater = 0;
+            witherProgress = 0f;
             daysWatered++;
         }
 
@@ -93,9 +101,19 @@ namespace Farming
             }
             else
             {
-                daysWithoutWater++;
+                switch(seasonManager.CurrentSeason)
+                {
+                    case SeasonManager.Season.Spring:
+                    case SeasonManager.Season.Fall: 
+                        witherProgress +=1f;
+                        Debug.Log("Spring or Fall Withering"); 
+                        break;
+                    case SeasonManager.Season.Summer: witherProgress +=1.5f; break;
+                    case SeasonManager.Season.Winter: witherProgress +=1.25f; break;
+                }
 
-                if (daysWithoutWater >= plantData.daysBeforeWither)
+
+                if (witherProgress >= plantData.daysBeforeWither)
                 {
                     SetState(PlantState.Withered);
                 }
@@ -191,7 +209,7 @@ namespace Farming
 
             daysGrowing = save.growthStage;
             daysWatered = save.isWatered ? 1 : 0;
-            daysWithoutWater = save.isWatered ? 0 : daysWithoutWater;
+            witherProgress = save.isWatered ? 0 : witherProgress;
 
             InitializeModels();
 
