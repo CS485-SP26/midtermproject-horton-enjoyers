@@ -15,7 +15,7 @@ MonoBehaviour:
   plantName: Cucumber
   daysToMature: 6
   daysBeforeWither: 2
-  sellValue: 130
+  growSeasons: 0000000001000000
   plantedModel: {fileID: 8181513101488867975, guid: e71beb700fe949e4b831bcf5117064df, type: 3}
   growingModel: {fileID: 7980229061356382722, guid: 7b089a59d66a02e4d849c39e90a3d56c, type: 3}
   matureModel: {fileID: 8027411702345560866, guid: 65adb2fa4611be5458ae8e6e77e396ec, type: 3}

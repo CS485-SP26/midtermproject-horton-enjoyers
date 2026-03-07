@@ -1,4 +1,5 @@
 using UnityEngine;
+using Environment;
 
 [CreateAssetMenu(menuName = "Farming/Plant Data")]
 public class PlantData : ScriptableObject
@@ -7,6 +8,7 @@ public class PlantData : ScriptableObject
 
     public int daysToMature = 2;
     public int daysBeforeWither = 2;
+    public SeasonManager.Season[] growSeasons;
 
 
     [Header("Models")]

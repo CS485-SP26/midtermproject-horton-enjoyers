@@ -111,7 +111,7 @@ namespace Farming{
                         }
                         else
                         {
-                            Debug.Log("No seeds available.");
+                            Debug.Log("No seeds available or incorrect season");
                         }
 
                         break;

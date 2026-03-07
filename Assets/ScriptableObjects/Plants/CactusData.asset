@@ -15,7 +15,7 @@ MonoBehaviour:
   plantName: Cactus
   daysToMature: 4
   daysBeforeWither: 10
-  sellValue: 60
+  growSeasons: 0100000002000000
   plantedModel: {fileID: 5991603883441977731, guid: 491ae0486d5271d459e5b08740d98704, type: 3}
   growingModel: {fileID: 1498793549422373860, guid: 9f0f6799041567449886541d7536c32a, type: 3}
   matureModel: {fileID: 1140656890391778482, guid: 3fd27ddea9ce5c345b6805dc6627f0d4, type: 3}

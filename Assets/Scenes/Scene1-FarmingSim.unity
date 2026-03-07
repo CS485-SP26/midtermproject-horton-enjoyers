@@ -8788,7 +8788,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Core.GameManager
   playerData:
     equippedSeed: 0
-    Plants: 0
+    tomatoPlants: 0
+    cactusPlants: 0
+    cucumberPlants: 0
     EnergyLevel: 0
   startingFunds: 100
   startingSeeds: 5

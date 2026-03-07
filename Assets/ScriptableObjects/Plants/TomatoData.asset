@@ -15,7 +15,7 @@ MonoBehaviour:
   plantName: Tomato
   daysToMature: 3
   daysBeforeWither: 4
-  sellValue: 45
+  growSeasons: 00000000010000000200000003000000
   plantedModel: {fileID: 4529457730332442423, guid: add126a868c1e4e4cab7276f97ea8b41, type: 3}
   growingModel: {fileID: 4364856524353876036, guid: 822e9c2a74dcf454289136c4a23947b6, type: 3}
   matureModel: {fileID: 3957482375435342453, guid: 233ed11c9f09372468697bb57ca0e524, type: 3}

@@ -3,6 +3,7 @@ using UnityEngine;
 using Environment;
 using Farming;
 using Core;
+using System.Linq;
 
 namespace Farming 
 {
@@ -38,6 +39,7 @@ namespace Farming
 
         public int DaysSinceLastInteraction => daysSinceLastInteraction;
         public bool HasPlant => currentPlant != null;
+        private SeasonManager seasonManager;
 
         void Awake()
         {
@@ -46,6 +48,8 @@ namespace Farming
 
         void Start()
         {
+            seasonManager = FindAnyObjectByType<SeasonManager>();
+            Debug.Assert(seasonManager, "FarmTile needs access to seasonManager");
             Debug.Assert(tileRenderer, "FarmTile requires a MeshRenderer");
 
             foreach (Transform edge in transform)
@@ -178,6 +182,18 @@ namespace Farming
             if (plantPrefab == null)
                 return false;
             
+            bool cactusCheck = cactusData.growSeasons.Contains(seasonManager.CurrentSeason);
+            bool cucumberCheck = cucumberData.growSeasons.Contains(seasonManager.CurrentSeason);
+            if (seedType == PlayerData.seedType.cactus && !cactusCheck)
+            {
+                Debug.Log("Cacti can only be planted in the summer or fall");
+                return false;
+            }
+            if (seedType == PlayerData.seedType.cucumber && !cucumberCheck)
+            {
+                Debug.Log("Cucumber can only be planted in the spring or summer");
+                return false;
+            }
             
             currentPlant = Instantiate(plantPrefab, transform);
             currentPlant.transform.localPosition = new Vector3(0, -5f, 0);
